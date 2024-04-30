@@ -100,13 +100,16 @@ namespace OOPASSIGNMENT2 {
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+            this->BackColor = System::Drawing::Color::White;
             this->ClientSize = System::Drawing::Size(1152, 840);
             this->Controls->Add(this->labelTeacherID);
             this->Controls->Add(this->labelTeacherName);
             this->Controls->Add(this->dataGridView1);
             this->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->Name = L"TeacherTimeTableForm";
+            this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
             this->Text = L"Teacher Time Table";
+            this->Load += gcnew System::EventHandler(this, &TeacherTimeTableForm::TeacherTimeTableForm_Load);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
             this->ResumeLayout(false);
             this->PerformLayout();
@@ -156,5 +159,7 @@ namespace OOPASSIGNMENT2 {
         }
 
 
-    };
+    private: System::Void TeacherTimeTableForm_Load(System::Object^ sender, System::EventArgs^ e) {
+    }
+};
 }

@@ -171,6 +171,9 @@ namespace OOPASSIGNMENT2
 			// Create a list to store the updated lines
 			List<String^>^ updatedLines = gcnew List<String^>();
 
+			// Flag to check if the application ID exists
+			bool found = false;
+
 			// Iterate through the lines in pairs (application ID followed by name)
 			for (int i = 0; i < lines->Length; i += 2)
 			{
@@ -183,6 +186,8 @@ namespace OOPASSIGNMENT2
 					// Check if the current application ID matches the one to be removed
 					if (currentApplicationID == ApplicationID)
 					{
+						// Set the flag to true to indicate the ID was found
+						found = true;
 						// Skip this pair (i.e., don't add it to updatedLines)
 						continue;
 					}
@@ -191,6 +196,13 @@ namespace OOPASSIGNMENT2
 					updatedLines->Add(lines[i]);     // Application ID
 					updatedLines->Add(lines[i + 1]); // Name
 				}
+			}
+
+			// If the application ID was not found, display a message
+			if (!found)
+			{
+				MessageBox::Show("Application ID not found.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				return;
 			}
 
 			// Write the updated lines back to the teachers.txt file
@@ -205,6 +217,7 @@ namespace OOPASSIGNMENT2
 			MessageBox::Show("An error occurred while removing the teacher: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 	}
+
 
 
 

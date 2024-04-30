@@ -285,18 +285,21 @@ namespace OOPASSIGNMENT2
 			this->Hide();
 			TeacherLogin^ teacher = gcnew TeacherLogin();
 			teacher->ShowDialog();
+			this->Show();
 		}
 	private: System::Void StudentLogin_Button(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->Hide();
 		StudentLogin^ student = gcnew StudentLogin();
 		student->ShowDialog();
+		this->Show();
 	}
 	private: System::Void Section_Button(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->Hide();
 		SectionLogin^ section = gcnew SectionLogin();
 		section->ShowDialog();
+		this->Show();
 	}
 
 	private: System::Void RoomButton_Click(System::Object^ sender, System::EventArgs^ e)
@@ -304,24 +307,28 @@ namespace OOPASSIGNMENT2
 		this->Hide();
 		RoomLogin^ room = gcnew RoomLogin();
 		room->ShowDialog();
+		this->Show();
 	}
 	private: System::Void AddStudent_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->Hide();
 		AddStudentForm^ addstudent = gcnew AddStudentForm();
 		addstudent->ShowDialog();
+		this->Show();
 	}
 	private: System::Void RemoveStudentButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->Hide();
 		RemoveStudentForm^ removestudent = gcnew RemoveStudentForm();
 		removestudent->ShowDialog();
+		this->Show();
 	}
 	private: System::Void DisplayStudentsButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->Hide();
 		DisplayStudents^ displaystudents = gcnew DisplayStudents();
 		displaystudents->ShowDialog();
+		this->Show();
 	}
 	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
@@ -331,6 +338,7 @@ private: System::Void RemoveTeacherButton_Click(System::Object^ sender, System::
 	this->Hide();
 	RemoveTeacher^ removeteacher = gcnew RemoveTeacher();
 	removeteacher->ShowDialog();
+	this->Show();
 
 }
 private: System::Void AddTeacherButton_Click(System::Object^ sender, System::EventArgs^ e)
@@ -338,12 +346,14 @@ private: System::Void AddTeacherButton_Click(System::Object^ sender, System::Eve
 	this->Hide();
 	AddTeacher^ addteacher = gcnew AddTeacher();
 	addteacher->ShowDialog();
+	this->Show();
 }
 private: System::Void DisplayButtonButton_Click(System::Object^ sender, System::EventArgs^ e) 
 {
 	this->Hide();
 	DisplayTeachers^ displayteachers = gcnew DisplayTeachers();
 	displayteachers->ShowDialog();
+	this->Show();
 }
 private: System::Void ExitButton_Click(System::Object^ sender, System::EventArgs^ e) 
 {

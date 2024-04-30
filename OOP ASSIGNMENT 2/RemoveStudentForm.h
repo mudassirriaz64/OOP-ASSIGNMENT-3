@@ -141,7 +141,9 @@ namespace OOPASSIGNMENT2
 			this->Controls->Add(this->removeButton);
 			this->Controls->Add(this->enrollmentIDTextBox);
 			this->Name = L"RemoveStudentForm";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Remove Student";
+			this->Load += gcnew System::EventHandler(this, &RemoveStudentForm::RemoveStudentForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -169,6 +171,9 @@ namespace OOPASSIGNMENT2
 			// Create a list to store the updated lines
 			List<String^>^ updatedLines = gcnew List<String^>();
 
+			// Flag to check if the enrollment ID exists
+			bool found = false;
+
 			// Iterate through each group of three lines
 			for (int i = 0; i < lines->Length; i += 3)
 			{
@@ -178,6 +183,8 @@ namespace OOPASSIGNMENT2
 				// Check if the current enrollment ID matches the one to be removed
 				if (currentEnrollmentID->Trim() == enrollmentID)
 				{
+					// Set the flag to true to indicate the ID was found
+					found = true;
 					// Skip this group (i.e., don't add it to updatedLines)
 					continue;
 				}
@@ -186,6 +193,13 @@ namespace OOPASSIGNMENT2
 				updatedLines->Add(currentEnrollmentID);
 				updatedLines->Add(lines[i + 1]); // Name
 				updatedLines->Add(lines[i + 2]); // Section
+			}
+
+			// If the enrollment ID was not found, display a message
+			if (!found)
+			{
+				MessageBox::Show("Enrollment ID not found.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				return;
 			}
 
 			// Write the updated lines back to the students.txt file
@@ -202,6 +216,7 @@ namespace OOPASSIGNMENT2
 	}
 
 
+
 	private: System::Void cancelButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->Close();
@@ -213,6 +228,8 @@ private: System::Void ClearButton_Click(System::Object^ sender, System::EventArg
 	enrollmentIDTextBox->Clear();
 }
 private: System::Void pictureBox2_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void RemoveStudentForm_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
