@@ -107,7 +107,7 @@ namespace OOPASSIGNMENT2
 			this->textBox2->ScrollBars = System::Windows::Forms::ScrollBars::Horizontal;
 			this->textBox2->Size = System::Drawing::Size(420, 28);
 			this->textBox2->TabIndex = 31;
-			this->textBox2->Text = L"      Time-table Managemnet System";
+			this->textBox2->Text = L"      Time-table Management System";
 			// 
 			// button9
 			// 
