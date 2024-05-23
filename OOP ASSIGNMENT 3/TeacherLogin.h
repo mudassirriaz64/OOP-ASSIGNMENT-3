@@ -3,19 +3,20 @@
 #include "TeacherTimeTableForm.h"
 #include<fstream>
 
-
+using namespace System;
+using namespace System::Data;
+using namespace System::Data::SqlClient;
 
 
 namespace OOPASSIGNMENT2
 {
-
+	
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-	using namespace System;
 	using namespace System::IO;
 	using namespace System::Windows::Forms;
 
@@ -190,6 +191,7 @@ namespace OOPASSIGNMENT2
 			this->PerformLayout();
 
 		}
+
 #pragma endregion
 
 
@@ -211,41 +213,52 @@ namespace OOPASSIGNMENT2
 			return;
 		}
 
-		// Check if the teachers.txt file exists
-		if (!File::Exists("teachers.txt"))
-		{
-			MessageBox::Show("Teachers file not found.");
-			return;
-		}
+		// Define the connection string (adjust it to your database settings)
+		String^ connectionString = "Data Source=DESKTOP-MN4CFP4;Initial Catalog=TIMETABLEDB;Integrated Security=True";
 
-		// Read the teachers.txt file
-		StreamReader^ reader = gcnew StreamReader("teachers.txt");
-		String^ line;
-		bool found = false;
-		String^ teacherName;
-		while ((line = reader->ReadLine()) != nullptr)
+		// Define the query to check for the application ID
+		String^ query = "SELECT Name FROM Teachers WHERE ApplicationID = @ApplicationID";
+
+		// Create a connection and command
+		SqlConnection^ connection = gcnew SqlConnection(connectionString);
+		SqlCommand^ command = gcnew SqlCommand(query, connection);
+		command->Parameters->AddWithValue("@ApplicationID", appId);
+
+		try
 		{
-			// Check if the current line contains the provided application ID
-			if (line->Trim() == appId)
+			// Open the connection
+			connection->Open();
+
+			// Execute the query
+			SqlDataReader^ reader = command->ExecuteReader();
+
+			// Check if the application ID was found
+			if (reader->Read())
 			{
-				// If found, extract the teacher's name
-				teacherName = reader->ReadLine();
-				found = true;
-				break;
-			}
-		}
-		reader->Close();
+				String^ teacherName = reader["Name"]->ToString();
 
-		// If the application ID was not found, display an error message
-		if (!found)
-		{
-			MessageBox::Show("Invalid application ID.");
-			return;
+				// If found, hide the current form and open the new form
+				this->Hide();
+				TeacherTimeTableForm^ form = gcnew TeacherTimeTableForm(teacherName, appId);
+				form->Show();
+			}
+			else
+			{
+				// If the application ID was not found, display an error message
+				MessageBox::Show("Invalid application ID.");
+			}
+
+			// Close the reader and connection
+			reader->Close();
+			connection->Close();
 		}
-		this->Hide();
-		TeacherTimeTableForm^ form = gcnew TeacherTimeTableForm(teacherName,appId);
-		form->Show();
+		catch (Exception^ ex)
+		{
+			// Handle any errors that occurred during the connection or query
+			MessageBox::Show("Error: " + ex->Message);
+		}
 	}
+
 
 		   // Event handler for Reset button click
 		private: System::Void reset_Click(System::Object^ sender, System::EventArgs^ e) {

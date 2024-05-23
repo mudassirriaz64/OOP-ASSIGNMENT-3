@@ -13,6 +13,7 @@ namespace OOPASSIGNMENT2
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace System::IO;
+	using namespace System::Data::SqlClient;
 
 	/// <summary>
 	/// Summary for Room
@@ -103,6 +104,7 @@ namespace OOPASSIGNMENT2
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 46;
 			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Click += gcnew System::EventHandler(this, &AddTeacher::pictureBox1_Click);
 			// 
 			// button1
 			// 
@@ -151,6 +153,7 @@ namespace OOPASSIGNMENT2
 			this->name->Name = L"name";
 			this->name->Size = System::Drawing::Size(643, 35);
 			this->name->TabIndex = 44;
+			this->name->TextChanged += gcnew System::EventHandler(this, &AddTeacher::name_TextChanged);
 			// 
 			// label1
 			// 
@@ -163,6 +166,7 @@ namespace OOPASSIGNMENT2
 			this->label1->TabIndex = 42;
 			this->label1->Text = L"Enter Name :";
 			this->label1->TextAlign = System::Drawing::ContentAlignment::TopCenter;
+			this->label1->Click += gcnew System::EventHandler(this, &AddTeacher::label1_Click);
 			// 
 			// label2
 			// 
@@ -185,6 +189,7 @@ namespace OOPASSIGNMENT2
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(643, 35);
 			this->textBox2->TabIndex = 49;
+			this->textBox2->TextChanged += gcnew System::EventHandler(this, &AddTeacher::textBox2_TextChanged);
 			// 
 			// AddTeacher
 			// 
@@ -203,6 +208,7 @@ namespace OOPASSIGNMENT2
 			this->Controls->Add(this->label1);
 			this->Name = L"AddTeacher";
 			this->Text = L"Add Teacher";
+			this->Load += gcnew System::EventHandler(this, &AddTeacher::AddTeacher_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -215,27 +221,78 @@ namespace OOPASSIGNMENT2
 
 	private: System::Void ok_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		// Get the student details from the textboxes
 		String^ TeacherName = name->Text;
 		String^ ApplicationID = textBox2->Text;
 
-		// Check if any of the fields are empty
-		if (TeacherName == "" || ApplicationID == "") 
+		if (TeacherName == "" || ApplicationID == "")
 		{
 			MessageBox::Show("Please fill in all the fields.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			return;
 		}
 
-		try {
-			// Write the student details to the file
-			WriteToFile("teachers.txt", ApplicationID,TeacherName);
-
-			// Show a success message
-			MessageBox::Show("Teacher added successfully.", "Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		try 
+		{
+			if (TeacherExists(ApplicationID))
+			{
+				MessageBox::Show("Teacher already exists.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
+			else
+			{
+				InsertTeacherIntoDatabase(ApplicationID, TeacherName);
+				MessageBox::Show("Teacher added successfully.", "Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			}
 		}
-		catch (Exception^ ex) {
-			// Show an error message if an exception occurs
-			MessageBox::Show("An error occurred while adding the student: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		catch (Exception^ ex) 
+		{
+			MessageBox::Show("An error occurred while adding the teacher: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+	}
+
+	void InsertTeacherIntoDatabase(String^ ApplicationID, String^ TeacherName)
+	 {
+		String^ connectionString = "Data Source=DESKTOP-MN4CFP4;Initial Catalog=TIMETABLEDB;Integrated Security=True";
+
+		String^ query = "INSERT INTO Teachers (ApplicationID, Name) VALUES (@ApplicationID, @Name)";
+
+		SqlConnection^ connection = gcnew SqlConnection(connectionString);
+
+		SqlCommand^ command = gcnew SqlCommand(query, connection);
+		command->Parameters->AddWithValue("@ApplicationID", ApplicationID);
+		command->Parameters->AddWithValue("@Name", TeacherName);
+
+		try
+		{
+			connection->Open();
+
+			command->ExecuteNonQuery();
+
+			connection->Close();
+		}
+		catch (Exception^ ex)
+		{
+			throw ex;
+		}
+				}
+
+	private: bool TeacherExists(String^ ApplicationID)
+	{
+		String^ connectionString = "Data Source=DESKTOP-MN4CFP4;Initial Catalog=TIMETABLEDB;Integrated Security=True";
+		SqlConnection^ connection = gcnew SqlConnection(connectionString);
+		String^ query = "SELECT COUNT(*) FROM Teachers WHERE ApplicationID = @ApplicationID";
+		SqlCommand^ command = gcnew SqlCommand(query, connection);
+		command->Parameters->AddWithValue("@ApplicationID", ApplicationID);
+
+		try
+		{
+			connection->Open();
+			int count = (int)command->ExecuteScalar();
+			connection->Close();
+			return count > 0;
+		}
+		catch (Exception^ ex)
+		{
+			MessageBox::Show("An error occurred while checking the teacher: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			return false;
 		}
 	}
 
@@ -245,29 +302,19 @@ namespace OOPASSIGNMENT2
 		textBox2->Text = "";
 	}
 
-		   // Function to write student details to a file
-		   void WriteToFile(String^ filePath, String^ ApplicationID, String^ TeacherName)
-		   {
-			   // Open the file in append mode
-			   StreamWriter^ sw = gcnew StreamWriter(filePath, true);
-
-			   // Write each piece of information on a separate line
-			   sw->WriteLine(ApplicationID);
-			   sw->WriteLine(TeacherName);
-
-			   // Close the StreamWriter
-			   sw->Close();
-
-			   String^ timetableFilePath = "timetable_" + ApplicationID + ".txt";
-			   FileStream^ timetableFS = File::Create(timetableFilePath); // Create an empty file
-
-			   // Close the FileStream for the timetable file
-			   timetableFS->Close();
-		   }
-
 	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void AddTeacher_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void name_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

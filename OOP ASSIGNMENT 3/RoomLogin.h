@@ -1,6 +1,6 @@
 #pragma once
 #include"RoomTimeTable.h"
-namespace OOPASSIGNMENT2 
+namespace OOPASSIGNMENT2
 {
 
 	using namespace System;
@@ -8,6 +8,7 @@ namespace OOPASSIGNMENT2
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
+	using namespace System::Data::SqlClient;
 	using namespace System::Drawing;
 
 	/// <summary>
@@ -179,11 +180,55 @@ namespace OOPASSIGNMENT2
 
 	private: System::Void ok_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		this->Hide();
+		// Retrieve the entered room number
 		String^ room = name->Text;
-		RoomTimeTable^ timetable = gcnew RoomTimeTable(room);
-		timetable->Show();
+
+		// Check room validity from the database
+		if (IsRoomValid(room))
+		{
+			// Hide the login form
+			this->Hide();
+
+			// Open the RoomTimeTable form
+			RoomTimeTable^ timetable = gcnew RoomTimeTable(room);
+			timetable->Show();
+		}
+		else
+		{
+			MessageBox::Show("Invalid room number!", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
 	}
+		   bool IsRoomValid(String^ room)
+		   {
+			   // Connection string to your database
+			   String^ connectionString = "Data Source = DESKTOP-MN4CFP4; Initial Catalog = TIMETABLEDB;Integrated Security = True";
+
+			   // SQL query to check if the room exists in the database
+			   String^ query = "SELECT COUNT(*) FROM Rooms WHERE RoomID = @RoomID";
+
+			   // Use SqlConnection and SqlCommand to execute the query
+			   SqlConnection^ connection = gcnew SqlConnection(connectionString);
+			   SqlCommand^ command = gcnew SqlCommand(query, connection);
+
+			   // Add parameters to the query
+			   command->Parameters->AddWithValue("@RoomID", room);
+
+			   try
+			   {
+				   connection->Open();
+				   int count = safe_cast<int>(command->ExecuteScalar());
+				   return (count > 0); // If count is greater than 0, room exists
+			   }
+			   catch (Exception^ ex)
+			   {
+				   MessageBox::Show(ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				   return false;
+			   }
+			   finally
+			   {
+				   connection->Close();
+			   }
+		   }
 	private: System::Void reset_Click(System::Object^ sender, System::EventArgs^ e) {
 		name->Text = "";
 	}

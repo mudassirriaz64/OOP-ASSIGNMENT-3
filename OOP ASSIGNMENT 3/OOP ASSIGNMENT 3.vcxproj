@@ -123,6 +123,7 @@
   <ItemGroup>
     <ClCompile Include="AddStudentForm.cpp" />
     <ClCompile Include="AddTeacher.cpp" />
+    <ClCompile Include="AddTimeSlot.cpp" />
     <ClCompile Include="DisplayStudents.cpp" />
     <ClCompile Include="DisplayTeachers.cpp" />
     <ClCompile Include="MainMenuForm.cpp" />
@@ -142,6 +143,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="AddTeacher.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AddTimeSlot.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="DisplayStudents.h">
@@ -191,6 +195,9 @@
     <EmbeddedResource Include="AddTeacher.resx">
       <DependentUpon>AddTeacher.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddTimeSlot.resx">
+      <DependentUpon>AddTimeSlot.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainMenuForm.resx">
       <DependentUpon>MainMenuForm.h</DependentUpon>
     </EmbeddedResource>
@@ -208,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StudentLogin.resx">
       <DependentUpon>StudentLogin.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentTimeTable.resx">
+      <DependentUpon>StudentTimeTable.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TeacherLogin.resx">
       <DependentUpon>TeacherLogin.h</DependentUpon>

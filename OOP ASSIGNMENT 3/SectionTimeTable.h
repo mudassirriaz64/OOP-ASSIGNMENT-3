@@ -6,11 +6,6 @@
 #include <msclr/marshal_cppstd.h> // For marshalling between System::String^ and std::string
 #include <iostream> // For debugging purposes
 
-using namespace System;
-using namespace System::Data;
-using namespace System::Data::SqlClient; // For SqlConnection, SqlCommand, SqlDataReader
-using namespace System::Windows::Forms; // For DataGridView
-
 namespace OOPASSIGNMENT2
 {
 	using namespace System;
@@ -75,58 +70,56 @@ namespace OOPASSIGNMENT2
 		}
 #pragma endregion
 
-		void PopulateSectionTimeTable(String^ sectionName)
+		void PopulateSectionTimeTable(String^ sectionID)
 		{
-			// Add columns to the DataGridView
+			
+
+			dataGridView1->Rows->Clear();
+
 			dataGridView1->Columns->Add("Day", "Day");
 			dataGridView1->Columns->Add("Start Time", "Start Time");
 			dataGridView1->Columns->Add("End Time", "End Time");
+			dataGridView1->Columns->Add("Teacher Name", "Teacher Name");
 			dataGridView1->Columns->Add("Course Name", "Course Name");
-			dataGridView1->Columns->Add("Room Name", "Room Name");
-
-			// Make the "Course Name" column wider
-			dataGridView1->Columns["Course Name"]->Width = 200; // Set the desired width
-
-			// Database connection details
-			String^ connectionString = "Server=DESKTOP-MN4CFP4;Database=TimeTableDB;Integrated Security=True;";
-			String^ query = "SELECT DayOfWeek, StartTime, EndTime, CourseName, RoomName "
-				"FROM ClassScheduleView "
-				"WHERE SectionName = @sectionName "
-				"ORDER BY "
-				"CASE "
-				"   WHEN DayOfWeek = 'Monday' THEN 1 "
-				"   WHEN DayOfWeek = 'Tuesday' THEN 2 "
-				"   WHEN DayOfWeek = 'Wednesday' THEN 3 "
-				"   WHEN DayOfWeek = 'Thursday' THEN 4 "
-				"   WHEN DayOfWeek = 'Friday' THEN 5 "
-				"   WHEN DayOfWeek = 'Saturday' THEN 6 "
-				"   WHEN DayOfWeek = 'Sunday' THEN 7 "
-				"END, StartTime;";
+			dataGridView1->Columns->Add("Room ID", "Room ID");
 
 			try
 			{
-				SqlConnection^ connection = gcnew SqlConnection(connectionString);
-				connection->Open();
-				SqlCommand^ command = gcnew SqlCommand(query, connection);
-				command->Parameters->AddWithValue("@sectionName", sectionName);
-				SqlDataReader^ reader = command->ExecuteReader();
+				// Connect to the database
+				SqlConnection^ con = gcnew SqlConnection("Data Source=DESKTOP-MN4CFP4;Initial Catalog=TIMETABLEDB;Integrated Security=True");
+				con->Open();
+
+				// Query to retrieve timetable data for the specified section
+				SqlCommand^ cmd = gcnew SqlCommand("SELECT DayOfWeek, StartTime, EndTime, TeacherName, CourseName, RoomID FROM Timetables WHERE SectionID = @SectionID", con);
+				cmd->Parameters->AddWithValue("@SectionID", sectionID);
+
+				// Execute the query
+				SqlDataReader^ reader = cmd->ExecuteReader();
+
+				// Iterate through the result set and populate the DataGridView
 				while (reader->Read())
 				{
 					String^ day = reader["DayOfWeek"]->ToString();
 					String^ startTime = reader["StartTime"]->ToString();
 					String^ endTime = reader["EndTime"]->ToString();
-					String^ course = reader["CourseName"]->ToString();
-					String^ room = reader["RoomName"]->ToString();
+					String^ teacherName = reader["TeacherName"]->ToString();
+					String^ courseName = reader["CourseName"]->ToString();
+					String^ roomID = reader["RoomID"]->ToString();
 
-					dataGridView1->Rows->Add(day, startTime, endTime, course, room);
+					// Add the data to the DataGridView
+					dataGridView1->Rows->Add(day, startTime, endTime, teacherName, courseName, roomID);
 				}
+
+				// Close the reader and database connection
 				reader->Close();
-				connection->Close();
+				con->Close();
 			}
 			catch (Exception^ ex)
 			{
-				MessageBox::Show("An error occurred while fetching the timetable: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				// Handle any exceptions
+				MessageBox::Show("Error: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			}
 		}
+
 	};
 }

@@ -1,12 +1,14 @@
 #pragma once
 
-namespace OOPASSIGNMENT2 {
+namespace OOPASSIGNMENT2
+{
 
     using namespace System;
     using namespace System::ComponentModel;
     using namespace System::Collections;
     using namespace System::Windows::Forms;
     using namespace System::Data;
+    using namespace System::Data::SqlClient;
     using namespace System::Drawing;
     using namespace System::IO;
 
@@ -108,79 +110,84 @@ namespace OOPASSIGNMENT2 {
         // Method to populate the DataGridView with student timetable data
         void DisplayStudentInfo(String^ studentName, String^ enrollmentID, String^ sectionName)
         {
-			// Create labels to display student information
-			Label^ nameLabel = gcnew Label();
-			nameLabel->Text = studentName;
-			nameLabel->Location = Point(150, 10);
-			nameLabel->AutoSize = true;
-			this->Controls->Add(nameLabel);
+            // Create labels to display student information
+            Label^ nameLabel = gcnew Label();
+            nameLabel->Text = studentName;
+            nameLabel->Location = Point(150, 10);
+            nameLabel->AutoSize = true;
+            this->Controls->Add(nameLabel);
 
-			Label^ idLabel = gcnew Label();
-			idLabel->Text = enrollmentID;
-			idLabel->Location = Point(150, 30);
-			idLabel->AutoSize = true;
-			this->Controls->Add(idLabel);
+            Label^ idLabel = gcnew Label();
+            idLabel->Text = enrollmentID;
+            idLabel->Location = Point(150, 30);
+            idLabel->AutoSize = true;
+            this->Controls->Add(idLabel);
 
-			Label^ sectionLabel = gcnew Label();
-			sectionLabel->Text = sectionName;
-			sectionLabel->Location = Point(150, 50);
-			sectionLabel->AutoSize = true;
-			this->Controls->Add(sectionLabel);
-		}
+            Label^ sectionLabel = gcnew Label();
+            sectionLabel->Text = sectionName;
+            sectionLabel->Location = Point(150, 50);
+            sectionLabel->AutoSize = true;
+            this->Controls->Add(sectionLabel);
+        }
 
         void PopulateStudentTimeTable(String^ sectionName)
         {
-            // Construct the timetable file name based on the section name
-            String^ fileName = "timetable_" + sectionName + ".txt";
-
-            // Add columns to the DataGridView
-            dataGridView1->Columns->Add("Day", "Day");
-            dataGridView1->Columns->Add("Start Time", "Start Time");
-            dataGridView1->Columns->Add("End Time", "End Time");
-            dataGridView1->Columns->Add("Class Details", "Class Details");
-
-            dataGridView1->Columns["Class Details"]->AutoSizeMode = DataGridViewAutoSizeColumnMode::Fill;
+            // Database connection details
+            String^ connectionString = "Server=DESKTOP-MN4CFP4;Database=TIMETABLEDB;Integrated Security=True;";
+            String^ query = "SELECT DayOfWeek, StartTime, EndTime, CourseName, TeacherName, RoomID "
+                "FROM Timetables "
+                "WHERE SectionID = @sectionID";
 
             try
             {
-                // Open the timetable file
-                StreamReader^ reader = gcnew StreamReader(fileName);
-                String^ line;
+                // Open a connection to the database
+                SqlConnection^ connection = gcnew SqlConnection(connectionString);
+                SqlCommand^ command = gcnew SqlCommand(query, connection);
+                command->Parameters->AddWithValue("@sectionID", sectionName);
 
-                // Read each line from the file
-                while ((line = reader->ReadLine()) != nullptr)
+                // Open the database connection
+                connection->Open();
+
+                // Execute the query
+                SqlDataReader^ reader = command->ExecuteReader();
+
+                // Clear existing rows and columns in the DataGridView
+                dataGridView1->Rows->Clear();
+                dataGridView1->Columns->Clear();
+
+                // Add columns to the DataGridView
+                dataGridView1->Columns->Add("Day", "Day");
+                dataGridView1->Columns->Add("Start Time", "Start Time");
+                dataGridView1->Columns->Add("End Time", "End Time");
+                dataGridView1->Columns->Add("Course Name", "Course Name");
+                dataGridView1->Columns->Add("Teacher Name", "Teacher Name");
+                dataGridView1->Columns->Add("Room ID", "Room ID");
+
+                // Populate the DataGridView with data from the database
+                while (reader->Read())
                 {
-                    // Split the line by spaces to extract day, start time, end time, and class details
-                    array<String^>^ parts = line->Split(' ');
+                    String^ day = reader["DayOfWeek"]->ToString();
+                    String^ startTime = reader["StartTime"]->ToString();
+                    String^ endTime = reader["EndTime"]->ToString();
+                    String^ courseName = reader["CourseName"]->ToString();
+                    String^ teacherName = reader["TeacherName"]->ToString();
+                    String^ roomID = reader["RoomID"]->ToString();
 
-                    // Ensure the line has enough parts to parse
-                    if (parts->Length >= 5)
-                    {
-                        String^ day = parts[0];
-                        String^ startTime = parts[1];
-                        String^ endTime = parts[2];
-                        String^ classDetails = "";
-
-                        // Concatenate the remaining parts to form the class details
-                        for (int i = 3; i < parts->Length; i++)
-                        {
-                            classDetails += parts[i] + " ";
-                        }
-
-                        // Add the parsed values to the DataGridView
-                        dataGridView1->Rows->Add(day, startTime, endTime, classDetails->Trim());
-                    }
+                    // Add the data to the DataGridView
+                    dataGridView1->Rows->Add(day, startTime, endTime, courseName, teacherName, roomID);
                 }
 
-                // Close the reader
+                // Close the database connection and the reader
                 reader->Close();
+                connection->Close();
             }
             catch (Exception^ ex)
             {
-                // Handle any exceptions that may occur while reading the file
-                MessageBox::Show("An error occurred while reading the timetable file: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+                // Display an error message if an exception occurs
+                MessageBox::Show("An error occurred while fetching timetable data: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
             }
         }
+
 
     };
 }

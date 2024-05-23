@@ -8,6 +8,7 @@
 #include "DisplayStudents.h"
 #include "RemoveTeacher.h"
 #include "AddTeacher.h"
+#include "AddTimeSlot.h"
 #include "DisplayTeachers.h"
 
 #pragma once
@@ -61,6 +62,7 @@ namespace OOPASSIGNMENT2
 	private: System::Windows::Forms::Button^ RemoveTeacherButton;
 	private: System::Windows::Forms::Button^ DisplayButtonButton;
 	private: System::Windows::Forms::Button^ ExitButton;
+	private: System::Windows::Forms::Button^ button7;
 
 
 
@@ -93,6 +95,7 @@ namespace OOPASSIGNMENT2
 			this->RemoveTeacherButton = (gcnew System::Windows::Forms::Button());
 			this->DisplayButtonButton = (gcnew System::Windows::Forms::Button());
 			this->ExitButton = (gcnew System::Windows::Forms::Button());
+			this->button7 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -245,7 +248,7 @@ namespace OOPASSIGNMENT2
 			// 
 			this->ExitButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->ExitButton->Location = System::Drawing::Point(119, 657);
+			this->ExitButton->Location = System::Drawing::Point(119, 702);
 			this->ExitButton->Name = L"ExitButton";
 			this->ExitButton->Size = System::Drawing::Size(308, 38);
 			this->ExitButton->TabIndex = 35;
@@ -253,12 +256,25 @@ namespace OOPASSIGNMENT2
 			this->ExitButton->UseVisualStyleBackColor = true;
 			this->ExitButton->Click += gcnew System::EventHandler(this, &MainMenuForm::ExitButton_Click);
 			// 
+			// button7
+			// 
+			this->button7->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button7->Location = System::Drawing::Point(119, 657);
+			this->button7->Name = L"button7";
+			this->button7->Size = System::Drawing::Size(308, 38);
+			this->button7->TabIndex = 36;
+			this->button7->Text = L"Add TimeSlot";
+			this->button7->UseVisualStyleBackColor = true;
+			this->button7->Click += gcnew System::EventHandler(this, &MainMenuForm::button7_Click);
+			// 
 			// MainMenuForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->ClientSize = System::Drawing::Size(562, 799);
+			this->Controls->Add(this->button7);
 			this->Controls->Add(this->ExitButton);
 			this->Controls->Add(this->DisplayButtonButton);
 			this->Controls->Add(this->RemoveTeacherButton);
@@ -285,14 +301,12 @@ namespace OOPASSIGNMENT2
 			this->Hide();
 			TeacherLogin^ teacher = gcnew TeacherLogin();
 			teacher->ShowDialog();
-			this->Show();
 		}
 	private: System::Void StudentLogin_Button(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->Hide();
 		StudentLogin^ student = gcnew StudentLogin();
 		student->ShowDialog();
-		this->Show();
 	}
 	private: System::Void Section_Button(System::Object^ sender, System::EventArgs^ e)
 	{
@@ -306,7 +320,6 @@ namespace OOPASSIGNMENT2
 		this->Hide();
 		RoomLogin^ room = gcnew RoomLogin();
 		room->ShowDialog();
-		this->Show();
 	}
 	private: System::Void AddStudent_Click(System::Object^ sender, System::EventArgs^ e)
 	{
@@ -357,6 +370,13 @@ private: System::Void DisplayButtonButton_Click(System::Object^ sender, System::
 private: System::Void ExitButton_Click(System::Object^ sender, System::EventArgs^ e) 
 {
 	Application::Exit();
+}
+private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	this->Hide();
+	AddTimeSlot^ addtimeslot = gcnew AddTimeSlot();
+	addtimeslot->ShowDialog();
+	this->Show();
 }
 };
 	  

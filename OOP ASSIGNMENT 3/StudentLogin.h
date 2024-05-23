@@ -9,6 +9,7 @@ namespace OOPASSIGNMENT2
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
+	using namespace System::Data::SqlClient;
 	using namespace System::Drawing;
 	using namespace System::IO;
 
@@ -173,50 +174,63 @@ namespace OOPASSIGNMENT2
 
 		}
 #pragma endregion
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		Application::Exit();
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		this->Hide();
 	}
 
 	private: System::Void ok_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		String^ enrollmentID = name->Text->Trim(); // Get the entered enrollment ID
-		bool found = false; // Flag to track if the enrollment ID is found
-		String^ studentName;
-		String^ section;
 
-		// Read the students.txt file
-		StreamReader^ reader = gcnew StreamReader("students.txt");
-		String^ line;
-		while ((line = reader->ReadLine()) != nullptr)
+		// Database connection details
+		String^ connectionString = "Server=DESKTOP-MN4CFP4;Database=TIMETABLEDB;Integrated Security=True;";
+		String^ query = "SELECT Name, SectionID FROM Students WHERE EnrollmentID = @enrollmentID";
+
+		try
 		{
-			// Check if the current line contains the enrollment ID
-			if (line == enrollmentID)
+			// Open a connection to the database
+			SqlConnection^ connection = gcnew SqlConnection(connectionString);
+			SqlCommand^ command = gcnew SqlCommand(query, connection);
+			command->Parameters->AddWithValue("@enrollmentID", enrollmentID);
+
+			// Open the database connection
+			connection->Open();
+
+			// Execute the query
+			SqlDataReader^ reader = command->ExecuteReader();
+
+			// Check if any rows were returned
+			if (reader->Read())
 			{
-				// If found, parse the student's name and section
-				studentName = reader->ReadLine(); // Read the next line for student's name
-				section = reader->ReadLine(); // Read the next line for the section
-				found = true;
-				break;
-			}
-			// Skip the next two lines since we're not interested in them
-			reader->ReadLine(); // Skip student's name
-			reader->ReadLine(); // Skip section
-		}
-		reader->Close();
+				// Retrieve student's name and section from the database
+				String^ studentName = reader["Name"]->ToString();
+				String^ section = reader["SectionID"]->ToString();
 
-		if (found)
-		{
-			// Open the timetable form for the section
-			this->Hide();
-			StudentTimeTable^ timetableForm = gcnew StudentTimeTable(section,studentName,enrollmentID);
-			timetableForm->Show();
+				// Close the database connection and the reader
+				reader->Close();
+				connection->Close();
+
+				// Open the timetable form for the section
+				this->Hide();
+				StudentTimeTable^ timetableForm = gcnew StudentTimeTable(section, studentName, enrollmentID);
+				timetableForm->Show();
+			}
+			else
+			{
+				// If no rows were returned, display an error message
+				reader->Close();
+				connection->Close();
+				MessageBox::Show("Enrollment ID not found!", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
 		}
-		else
+		catch (Exception^ ex)
 		{
-			// If the enrollment ID is not found, display an error message
-			MessageBox::Show("Enrollment ID not found!", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			// Display an error message if an exception occurs
+			MessageBox::Show("An error occurred while fetching student information: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 	}
+
 
 
 

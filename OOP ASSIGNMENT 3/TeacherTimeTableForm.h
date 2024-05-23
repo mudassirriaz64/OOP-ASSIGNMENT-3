@@ -2,7 +2,8 @@
 
 #include <msclr/marshal_cppstd.h> // Include this for string marshaling
 
-namespace OOPASSIGNMENT2 {
+namespace OOPASSIGNMENT2
+{
 
     using namespace System;
     using namespace System::ComponentModel;
@@ -11,6 +12,7 @@ namespace OOPASSIGNMENT2 {
     using namespace System::Data;
     using namespace System::Drawing;
     using namespace System::IO;
+    using namespace System::Data::SqlClient;
 
     /// <summary>
     /// Summary for TeacherTimeTableForm
@@ -50,7 +52,7 @@ namespace OOPASSIGNMENT2 {
         /// </summary>
         System::ComponentModel::Container^ components;
 
-        System::Windows::Forms::DataGridView^ dataGridView1; 
+        System::Windows::Forms::DataGridView^ dataGridView1;
         System::Windows::Forms::Label^ labelTeacherName; // Added declaration
         System::Windows::Forms::Label^ labelTeacherID;
 
@@ -120,46 +122,56 @@ namespace OOPASSIGNMENT2 {
 
         void PopulateTeacherData(String^ teacherName, String^ teacherID)
         {
-            // Set up DataGridView columns
+            // Clear existing rows in the DataGridView
+
             dataGridView1->Columns->Add("Day", "Day");
-            dataGridView1->Columns->Add("Start Time", "Start Time");
-            dataGridView1->Columns->Add("End Time", "End Time");
-            dataGridView1->Columns->Add("Class Details", "Class Details");
+            dataGridView1->Columns->Add("StartTime", "Start Time");
+            dataGridView1->Columns->Add("EndTime", "End Time");
+            dataGridView1->Columns->Add("SectionID", "Section ID");
+            dataGridView1->Columns->Add("CourseName", "Course Name");
+            dataGridView1->Columns->Add("RoomID", "Room ID");
 
-            dataGridView1->Columns["Class Details"]->AutoSizeMode = DataGridViewAutoSizeColumnMode::Fill;
+            dataGridView1->Rows->Clear();
 
-
-            String^ fileName = "timetable_" + teacherID + ".txt";
-
-            // Read teacher timetable from file and populate DataGridView
-            StreamReader^ reader = gcnew StreamReader(fileName);
-            String^ line;
-            while ((line = reader->ReadLine()) != nullptr)
+            try
             {
-                array<String^>^ parts = line->Split(' ');
+                // Connect to the database
+                SqlConnection^ con = gcnew SqlConnection("Data Source=DESKTOP-MN4CFP4;Initial Catalog=TIMETABLEDB;Integrated Security=True");
+                con->Open();
 
-                // Ensure the line has enough parts to parse
-                if (parts->Length >= 5)
+                // Query to retrieve timetable data for the specified teacher
+                SqlCommand^ cmd = gcnew SqlCommand("SELECT DayOfWeek, StartTime, EndTime, SectionID, CourseName, RoomID FROM Timetables WHERE TeacherID = @TeacherID", con);
+                cmd->Parameters->AddWithValue("@TeacherID", teacherID);
+
+                // Execute the query
+                SqlDataReader^ reader = cmd->ExecuteReader();
+
+                // Iterate through the result set and populate the DataGridView
+                while (reader->Read())
                 {
-                    // Extract individual parts
-                    String^ day = parts[0];
-                    String^ startTime = parts[1];
-                    String^ endTime = parts[2];
-                    String^ classDetails = "";
-                    for (int i = 3; i < parts->Length; i++)
-                    {
-                        classDetails += parts[i] + " ";
-                    }
+                    String^ day = reader["DayOfWeek"]->ToString();
+                    String^ startTime = reader["StartTime"]->ToString();
+                    String^ endTime = reader["EndTime"]->ToString();
+                    String^ sectionID = reader["SectionID"]->ToString();
+                    String^ courseName = reader["CourseName"]->ToString();
+                    String^ roomID = reader["RoomID"]->ToString();
 
-                    // Add the parsed values to the DataGridView
-                    dataGridView1->Rows->Add(day, startTime, endTime, classDetails->Trim());
+                    // Add the data to the DataGridView
+                    dataGridView1->Rows->Add(day, startTime, endTime, sectionID, courseName, roomID);
                 }
-            }
-            reader->Close();
-        }
 
+                // Close the reader and database connection
+                reader->Close();
+                con->Close();
+            }
+            catch (Exception^ ex)
+            {
+                // Handle any exceptions
+                MessageBox::Show("Error: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+            }
+        }
 
     private: System::Void TeacherTimeTableForm_Load(System::Object^ sender, System::EventArgs^ e) {
     }
-};
+    };
 }

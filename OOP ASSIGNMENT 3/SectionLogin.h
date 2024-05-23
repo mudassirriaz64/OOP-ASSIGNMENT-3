@@ -2,7 +2,7 @@
 #include "SectionTimeTable.h"
 
 
-namespace OOPASSIGNMENT2 
+namespace OOPASSIGNMENT2
 {
 
 	using namespace System;
@@ -10,6 +10,7 @@ namespace OOPASSIGNMENT2
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
+	using namespace System::Data::SqlClient;
 	using namespace System::Drawing;
 
 	/// <summary>
@@ -185,11 +186,42 @@ namespace OOPASSIGNMENT2
 
 	private: System::Void ok_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		this->Hide();
-		String^ section = name->Text;
-		SectionTimeTable^ sectionTimeTable = gcnew SectionTimeTable(section);
-		sectionTimeTable->Show();
+		String^ sectionID = name->Text;
+		if (CheckSectionExistsInDatabase(sectionID))
+		{
+			this->Hide();
+			SectionTimeTable^ sectionTimeTable = gcnew SectionTimeTable(sectionID);
+			sectionTimeTable->Show();
+		}
+		else 
+		{
+			MessageBox::Show("Section Not Found.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
 	}
+		   private: bool CheckSectionExistsInDatabase(String^ sectionID)
+		   {
+			   bool sectionExists = false;
+			   String^ connectionString = "Data Source=DESKTOP-MN4CFP4;Initial Catalog=TIMETABLEDB;Integrated Security=True";
+			   SqlConnection^ con = gcnew SqlConnection(connectionString);
+
+			   try {
+				   con->Open();
+				   String^ query = "SELECT COUNT(*) FROM Sections WHERE SectionID = @SectionID";
+				   SqlCommand^ cmd = gcnew SqlCommand(query, con);
+				   cmd->Parameters->AddWithValue("@SectionID", sectionID);
+				   int count = (int)cmd->ExecuteScalar();
+				   sectionExists = (count > 0);
+				   con->Close();
+			   }
+			   catch (Exception^ ex) {
+				   MessageBox::Show("An error occurred: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				   if (con->State == ConnectionState::Open) {
+					   con->Close();
+				   }
+			   }
+			   return sectionExists;
+		   }
+
 
 	private: System::Void reset_Click(System::Object^ sender, System::EventArgs^ e) {
 		name->Text = "";

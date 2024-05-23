@@ -5,7 +5,6 @@
 
 namespace OOPASSIGNMENT2
 {
-
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -13,25 +12,17 @@ namespace OOPASSIGNMENT2
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace System::IO;
+	using namespace System::Data::SqlClient;
 
-	/// <summary>
-	/// Summary for Room
-	/// </summary>
 	public ref class AddStudentForm : public System::Windows::Forms::Form
 	{
 	public:
 		AddStudentForm(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
 		}
 
 	protected:
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
 		~AddStudentForm()
 		{
 			if (components)
@@ -39,6 +30,7 @@ namespace OOPASSIGNMENT2
 				delete components;
 			}
 		}
+
 	private: System::Windows::Forms::TextBox^ textBox1;
 	protected:
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
@@ -53,16 +45,9 @@ namespace OOPASSIGNMENT2
 	private: System::Windows::Forms::TextBox^ textBox3;
 
 	private:
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
 		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(AddStudentForm::typeid));
@@ -159,31 +144,28 @@ namespace OOPASSIGNMENT2
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(-3, 298);
+			this->label1->Location = System::Drawing::Point(2, 293);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(140, 27);
-			this->label1->TabIndex = 42;
-			this->label1->Text = L"Enter Name :";
-			this->label1->TextAlign = System::Drawing::ContentAlignment::TopCenter;
-			this->label1->Click += gcnew System::EventHandler(this, &AddStudentForm::label1_Click);
+			this->label1->Size = System::Drawing::Size(69, 27);
+			this->label1->TabIndex = 48;
+			this->label1->Text = L"Name";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(-3, 379);
+			this->label2->Location = System::Drawing::Point(2, 384);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(221, 27);
-			this->label2->TabIndex = 48;
-			this->label2->Text = L"Enter Enrollment ID :";
-			this->label2->TextAlign = System::Drawing::ContentAlignment::TopCenter;
+			this->label2->Size = System::Drawing::Size(150, 27);
+			this->label2->TabIndex = 50;
+			this->label2->Text = L"Enrollment ID";
 			// 
 			// textBox2
 			// 
 			this->textBox2->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox2->Location = System::Drawing::Point(2, 409);
+			this->textBox2->Location = System::Drawing::Point(2, 418);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(643, 35);
 			this->textBox2->TabIndex = 49;
@@ -193,23 +175,20 @@ namespace OOPASSIGNMENT2
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(-3, 458);
+			this->label3->Location = System::Drawing::Point(2, 475);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(142, 27);
-			this->label3->TabIndex = 50;
-			this->label3->Text = L"Enter Section";
-			this->label3->TextAlign = System::Drawing::ContentAlignment::TopCenter;
-			this->label3->Click += gcnew System::EventHandler(this, &AddStudentForm::label3_Click);
+			this->label3->Size = System::Drawing::Size(83, 27);
+			this->label3->TabIndex = 52;
+			this->label3->Text = L"Section";
 			// 
 			// textBox3
 			// 
 			this->textBox3->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox3->Location = System::Drawing::Point(2, 488);
+			this->textBox3->Location = System::Drawing::Point(2, 509);
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(643, 35);
 			this->textBox3->TabIndex = 51;
-			this->textBox3->TextChanged += gcnew System::EventHandler(this, &AddStudentForm::textBox3_TextChanged);
 			// 
 			// AddStudentForm
 			// 
@@ -217,84 +196,99 @@ namespace OOPASSIGNMENT2
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->ClientSize = System::Drawing::Size(659, 642);
-			this->Controls->Add(this->textBox3);
 			this->Controls->Add(this->label3);
-			this->Controls->Add(this->textBox2);
+			this->Controls->Add(this->textBox3);
 			this->Controls->Add(this->label2);
+			this->Controls->Add(this->textBox2);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->ok);
 			this->Controls->Add(this->reset);
 			this->Controls->Add(this->name);
-			this->Controls->Add(this->label1);
 			this->Name = L"AddStudentForm";
-			this->Text = L"Add Student";
+			this->Text = L"AddStudentForm";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		Application::Exit();
-	}
-
-	private: System::Void ok_Click(System::Object^ sender, System::EventArgs^ e)
-	{
-		// Get the student details from the textboxes
-		String^ studentName = name->Text;
-		String^ enrollmentID = textBox2->Text;
-		String^ sectionName = textBox3->Text;
-
-		// Check if any of the fields are empty
-		if (studentName == "" || enrollmentID == "" || sectionName == "") {
-			MessageBox::Show("Please fill in all the fields.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-			return;
-		}
-
-		try {
-			// Write the student details to the file
-			WriteToFile("students.txt", studentName, enrollmentID, sectionName);
-
-			// Show a success message
-			MessageBox::Show("Student added successfully.", "Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
-		}
-		catch (Exception^ ex) {
-			// Show an error message if an exception occurs
-			MessageBox::Show("An error occurred while adding the student: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-		}
-	}
-
-	private: System::Void reset_Click(System::Object^ sender, System::EventArgs^ e)
-	{
-		name->Text = "";
-		textBox2->Text = "";
-		textBox3->Text = "";
-	}
-
-		   // Function to write student details to a file
-		   void WriteToFile(String^ filePath, String^ studentName, String^ enrollmentID, String^ sectionName)
-		   {
-			   // Open the file in append mode
-			   StreamWriter^ sw = gcnew StreamWriter(filePath, true);
-
-			   // Write each piece of information on a separate line
-			   sw->WriteLine(enrollmentID);
-			   sw->WriteLine(studentName);
-			   sw->WriteLine(sectionName);
-
-			   // Close the StreamWriter
-			   sw->Close();
-		   }
-
 	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void textBox3_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		this->Close();
 	}
-private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-};
+	private: System::Void reset_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		clearfields();
+	}
+	private: System::Void ok_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		String^ studentName = name->Text;
+		String^ enrollmentID = textBox2->Text;
+		String^ sectionID = textBox3->Text;
+
+		if (studentName == "" || enrollmentID == "" || sectionID == "")
+		{
+			MessageBox::Show("Please fill in all fields.");
+			return;
+		}
+		else
+		{
+			AddStudentToDatabase(studentName, enrollmentID, sectionID);
+			MessageBox::Show("Student added successfully.");
+			clearfields();
+		}
+	}
+
+		   void AddStudentToDatabase(String^ studentName, String^ enrollmentID, String^ sectionID)
+		   {
+			   String^ connectionString = "Data Source=DESKTOP-MN4CFP4;Initial Catalog=TIMETABLEDB;Integrated Security=True";
+			   SqlConnection^ con = gcnew SqlConnection(connectionString);
+
+			   try
+			   {
+				   con->Open();
+
+				   String^ checkSectionQuery = "SELECT COUNT(*) FROM Sections WHERE SectionID = @SectionID";
+				   SqlCommand^ checkSectionCmd = gcnew SqlCommand(checkSectionQuery, con);
+				   checkSectionCmd->Parameters->AddWithValue("@SectionID", sectionID);
+				   int sectionCount = (int)checkSectionCmd->ExecuteScalar();
+
+				   if (sectionCount == 0) 
+				   {
+					   String^ addSectionQuery = "INSERT INTO Sections (SectionID) VALUES (@SectionID)";
+					   SqlCommand^ addSectionCmd = gcnew SqlCommand(addSectionQuery, con);
+					   addSectionCmd->Parameters->AddWithValue("@SectionID", sectionID);
+					   addSectionCmd->ExecuteNonQuery();
+				   }
+
+				   String^ addStudentQuery = "INSERT INTO Students (EnrollmentID, Name, SectionID) VALUES (@EnrollmentID, @StudentName, @SectionID)";
+
+				   SqlCommand^ addStudentCmd = gcnew SqlCommand(addStudentQuery, con);
+				   addStudentCmd->Parameters->AddWithValue("@EnrollmentID", enrollmentID);
+				   addStudentCmd->Parameters->AddWithValue("@StudentName", studentName);
+				   addStudentCmd->Parameters->AddWithValue("@SectionID", sectionID);
+
+				   addStudentCmd->ExecuteNonQuery();
+
+				   con->Close();
+			   }
+			   catch (Exception^ ex) 
+			   {
+				   con->Close();
+				   throw ex;
+			   }
+		   }
+
+		   void clearfields()
+		   {
+			  name->Text="";
+			  textBox2->Text="";
+			  textBox3->Text="";
+		   }
+	};
 }
