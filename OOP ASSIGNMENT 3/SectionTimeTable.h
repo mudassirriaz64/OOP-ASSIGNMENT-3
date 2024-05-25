@@ -3,8 +3,8 @@
 #include <string>
 #include <fstream>
 #include <vcclr.h>
-#include <msclr/marshal_cppstd.h> // For marshalling between System::String^ and std::string
-#include <iostream> // For debugging purposes
+#include <msclr/marshal_cppstd.h>
+#include <iostream>
 
 namespace OOPASSIGNMENT2
 {
@@ -72,9 +72,8 @@ namespace OOPASSIGNMENT2
 
 		void PopulateSectionTimeTable(String^ sectionID)
 		{
-			
-
 			dataGridView1->Rows->Clear();
+			dataGridView1->Columns->Clear();
 
 			dataGridView1->Columns->Add("Day", "Day");
 			dataGridView1->Columns->Add("Start Time", "Start Time");
@@ -85,18 +84,14 @@ namespace OOPASSIGNMENT2
 
 			try
 			{
-				// Connect to the database
 				SqlConnection^ con = gcnew SqlConnection("Data Source=DESKTOP-MN4CFP4;Initial Catalog=TIMETABLEDB;Integrated Security=True");
 				con->Open();
 
-				// Query to retrieve timetable data for the specified section
 				SqlCommand^ cmd = gcnew SqlCommand("SELECT DayOfWeek, StartTime, EndTime, TeacherName, CourseName, RoomID FROM Timetables WHERE SectionID = @SectionID", con);
 				cmd->Parameters->AddWithValue("@SectionID", sectionID);
 
-				// Execute the query
 				SqlDataReader^ reader = cmd->ExecuteReader();
 
-				// Iterate through the result set and populate the DataGridView
 				while (reader->Read())
 				{
 					String^ day = reader["DayOfWeek"]->ToString();
@@ -106,17 +101,13 @@ namespace OOPASSIGNMENT2
 					String^ courseName = reader["CourseName"]->ToString();
 					String^ roomID = reader["RoomID"]->ToString();
 
-					// Add the data to the DataGridView
 					dataGridView1->Rows->Add(day, startTime, endTime, teacherName, courseName, roomID);
 				}
-
-				// Close the reader and database connection
 				reader->Close();
 				con->Close();
 			}
 			catch (Exception^ ex)
 			{
-				// Handle any exceptions
 				MessageBox::Show("Error: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			}
 		}
