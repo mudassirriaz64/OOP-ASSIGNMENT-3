@@ -40,9 +40,6 @@ namespace OOPASSIGNMENT2
 	protected:
 
 	private: System::Windows::Forms::Button^ CloseButton;
-
-
-
 	private: System::Windows::Forms::Button^ ClearButton;
 	private: System::Windows::Forms::Label^ ApplicationIDLabel;
 
@@ -190,6 +187,13 @@ namespace OOPASSIGNMENT2
 		}
 	}
 
+
+
+
+
+
+	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
 	private: System::Void ClearButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		ApplicationIDTextBox->Clear();
