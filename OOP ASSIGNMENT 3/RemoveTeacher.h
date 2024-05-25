@@ -40,9 +40,6 @@ namespace OOPASSIGNMENT2
 	protected:
 
 	private: System::Windows::Forms::Button^ CloseButton;
-
-
-
 	private: System::Windows::Forms::Button^ ClearButton;
 	private: System::Windows::Forms::Label^ ApplicationIDLabel;
 
