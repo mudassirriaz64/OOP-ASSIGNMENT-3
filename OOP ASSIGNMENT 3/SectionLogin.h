@@ -38,14 +38,21 @@ namespace OOPASSIGNMENT2
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::Label^ TimeTableLabel;
+	protected:
+
 	protected:
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ ok;
-	private: System::Windows::Forms::Button^ reset;
-	private: System::Windows::Forms::TextBox^ name;
-	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Button^ CloseButton;
+
+	private: System::Windows::Forms::Button^ ViewButton;
+	private: System::Windows::Forms::Button^ ClearButton;
+
+
+	private: System::Windows::Forms::TextBox^ SectionIDTEXTFIELD;
+	private: System::Windows::Forms::Label^ SectionIDLabel;
+
+
 
 	private:
 		/// <summary>
@@ -61,28 +68,27 @@ namespace OOPASSIGNMENT2
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(SectionLogin::typeid));
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->TimeTableLabel = (gcnew System::Windows::Forms::Label());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->ok = (gcnew System::Windows::Forms::Button());
-			this->reset = (gcnew System::Windows::Forms::Button());
-			this->name = (gcnew System::Windows::Forms::TextBox());
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->CloseButton = (gcnew System::Windows::Forms::Button());
+			this->ViewButton = (gcnew System::Windows::Forms::Button());
+			this->ClearButton = (gcnew System::Windows::Forms::Button());
+			this->SectionIDTEXTFIELD = (gcnew System::Windows::Forms::TextBox());
+			this->SectionIDLabel = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
-			// textBox1
+			// TimeTableLabel
 			// 
-			this->textBox1->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
-			this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->TimeTableLabel->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
+			this->TimeTableLabel->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->TimeTableLabel->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox1->Location = System::Drawing::Point(103, 220);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->ScrollBars = System::Windows::Forms::ScrollBars::Horizontal;
-			this->textBox1->Size = System::Drawing::Size(420, 28);
-			this->textBox1->TabIndex = 40;
-			this->textBox1->Text = L"      Time-table Managemnet System";
+			this->TimeTableLabel->Location = System::Drawing::Point(103, 220);
+			this->TimeTableLabel->Name = L"TimeTableLabel";
+			this->TimeTableLabel->Size = System::Drawing::Size(420, 28);
+			this->TimeTableLabel->TabIndex = 40;
+			this->TimeTableLabel->Text = L"      Time-table Management System";
 			// 
 			// pictureBox1
 			// 
@@ -94,67 +100,66 @@ namespace OOPASSIGNMENT2
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 39;
 			this->pictureBox1->TabStop = false;
-			this->pictureBox1->Click += gcnew System::EventHandler(this, &SectionLogin::pictureBox1_Click);
 			// 
-			// button1
+			// CloseButton
 			// 
-			this->button1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
-			this->button1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->CloseButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->CloseButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->Location = System::Drawing::Point(465, 419);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(186, 51);
-			this->button1->TabIndex = 38;
-			this->button1->Text = L"Exit";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &SectionLogin::button1_Click);
+			this->CloseButton->Location = System::Drawing::Point(465, 419);
+			this->CloseButton->Name = L"CloseButton";
+			this->CloseButton->Size = System::Drawing::Size(186, 51);
+			this->CloseButton->TabIndex = 38;
+			this->CloseButton->Text = L"Close";
+			this->CloseButton->UseVisualStyleBackColor = true;
+			this->CloseButton->Click += gcnew System::EventHandler(this, &SectionLogin::CloseButton_Click);
 			// 
-			// ok
+			// ViewButton
 			// 
-			this->ok->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
-			this->ok->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->ViewButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->ViewButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->ok->Location = System::Drawing::Point(4, 419);
-			this->ok->Name = L"ok";
-			this->ok->Size = System::Drawing::Size(203, 51);
-			this->ok->TabIndex = 34;
-			this->ok->Text = L"Login";
-			this->ok->UseVisualStyleBackColor = true;
-			this->ok->Click += gcnew System::EventHandler(this, &SectionLogin::ok_Click);
+			this->ViewButton->Location = System::Drawing::Point(4, 419);
+			this->ViewButton->Name = L"ViewButton";
+			this->ViewButton->Size = System::Drawing::Size(203, 51);
+			this->ViewButton->TabIndex = 34;
+			this->ViewButton->Text = L"View";
+			this->ViewButton->UseVisualStyleBackColor = true;
+			this->ViewButton->Click += gcnew System::EventHandler(this, &SectionLogin::ViewButton_Click);
 			// 
-			// reset
+			// ClearButton
 			// 
-			this->reset->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
-			this->reset->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->ClearButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->ClearButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->reset->Location = System::Drawing::Point(236, 419);
-			this->reset->Name = L"reset";
-			this->reset->Size = System::Drawing::Size(199, 51);
-			this->reset->TabIndex = 36;
-			this->reset->Text = L"Reset";
-			this->reset->UseVisualStyleBackColor = true;
-			this->reset->Click += gcnew System::EventHandler(this, &SectionLogin::reset_Click);
+			this->ClearButton->Location = System::Drawing::Point(236, 419);
+			this->ClearButton->Name = L"ClearButton";
+			this->ClearButton->Size = System::Drawing::Size(199, 51);
+			this->ClearButton->TabIndex = 36;
+			this->ClearButton->Text = L"Clear";
+			this->ClearButton->UseVisualStyleBackColor = true;
+			this->ClearButton->Click += gcnew System::EventHandler(this, &SectionLogin::ClearButton_Click);
 			// 
-			// name
+			// SectionIDTEXTFIELD
 			// 
-			this->name->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->SectionIDTEXTFIELD->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->name->Location = System::Drawing::Point(8, 320);
-			this->name->Name = L"name";
-			this->name->Size = System::Drawing::Size(643, 35);
-			this->name->TabIndex = 37;
+			this->SectionIDTEXTFIELD->Location = System::Drawing::Point(8, 320);
+			this->SectionIDTEXTFIELD->Name = L"SectionIDTEXTFIELD";
+			this->SectionIDTEXTFIELD->Size = System::Drawing::Size(643, 35);
+			this->SectionIDTEXTFIELD->TabIndex = 37;
 			// 
-			// label1
+			// SectionIDLabel
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->SectionIDLabel->AutoSize = true;
+			this->SectionIDLabel->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(3, 273);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(402, 27);
-			this->label1->TabIndex = 35;
-			this->label1->Text = L"Enter Section (2-A, 2-B, 4-A, 6-A, 8-A):";
-			this->label1->TextAlign = System::Drawing::ContentAlignment::TopCenter;
+			this->SectionIDLabel->Location = System::Drawing::Point(3, 273);
+			this->SectionIDLabel->Name = L"SectionIDLabel";
+			this->SectionIDLabel->Size = System::Drawing::Size(402, 27);
+			this->SectionIDLabel->TabIndex = 35;
+			this->SectionIDLabel->Text = L"Enter Section (2-A, 2-B, 4-A, 6-A, 8-A):";
+			this->SectionIDLabel->TextAlign = System::Drawing::ContentAlignment::TopCenter;
 			// 
 			// SectionLogin
 			// 
@@ -162,15 +167,15 @@ namespace OOPASSIGNMENT2
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->ClientSize = System::Drawing::Size(663, 485);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->TimeTableLabel);
 			this->Controls->Add(this->pictureBox1);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->ok);
-			this->Controls->Add(this->reset);
-			this->Controls->Add(this->name);
-			this->Controls->Add(this->label1);
+			this->Controls->Add(this->CloseButton);
+			this->Controls->Add(this->ViewButton);
+			this->Controls->Add(this->ClearButton);
+			this->Controls->Add(this->SectionIDTEXTFIELD);
+			this->Controls->Add(this->SectionIDLabel);
 			this->Name = L"SectionLogin";
-			this->Text = L"Section";
+			this->Text = L"Section Login";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -179,54 +184,58 @@ namespace OOPASSIGNMENT2
 
 
 #pragma endregion
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void CloseButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Application::Exit();
+		this->Hide();
 	}
 
-	private: System::Void ok_Click(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void ViewButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		String^ sectionID = name->Text;
+		String^ sectionID = SectionIDTEXTFIELD->Text;
 		if (CheckSectionExistsInDatabase(sectionID))
 		{
 			this->Hide();
 			SectionTimeTable^ sectionTimeTable = gcnew SectionTimeTable(sectionID);
 			sectionTimeTable->Show();
 		}
-		else 
+		else
 		{
 			MessageBox::Show("Section Not Found.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 	}
-		   private: bool CheckSectionExistsInDatabase(String^ sectionID)
-		   {
-			   bool sectionExists = false;
-			   String^ connectionString = "Data Source=DESKTOP-MN4CFP4;Initial Catalog=TIMETABLEDB;Integrated Security=True";
-			   SqlConnection^ con = gcnew SqlConnection(connectionString);
+	private: bool CheckSectionExistsInDatabase(String^ sectionID)
+	{
+		bool sectionExists = false;
+		String^ connectionString = "Data Source=DESKTOP-MN4CFP4;Initial Catalog=TIMETABLEDB;Integrated Security=True";
+		SqlConnection^ con = gcnew SqlConnection(connectionString);
 
-			   try {
-				   con->Open();
-				   String^ query = "SELECT COUNT(*) FROM Sections WHERE SectionID = @SectionID";
-				   SqlCommand^ cmd = gcnew SqlCommand(query, con);
-				   cmd->Parameters->AddWithValue("@SectionID", sectionID);
-				   int count = (int)cmd->ExecuteScalar();
-				   sectionExists = (count > 0);
-				   con->Close();
-			   }
-			   catch (Exception^ ex) {
-				   MessageBox::Show("An error occurred: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-				   if (con->State == ConnectionState::Open) {
-					   con->Close();
-				   }
-			   }
-			   return sectionExists;
+		try {
+			con->Open();
+			String^ query = "SELECT COUNT(*) FROM Sections WHERE SectionID = @SectionID";
+			SqlCommand^ cmd = gcnew SqlCommand(query, con);
+			cmd->Parameters->AddWithValue("@SectionID", sectionID);
+			int count = (int)cmd->ExecuteScalar();
+			sectionExists = (count > 0);
+			con->Close();
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show("An error occurred: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			if (con->State == ConnectionState::Open) {
+				con->Close();
+			}
+		}
+		return sectionExists;
+	}
+
+		   void ClearTextBoxes()
+		   {
+			   SectionIDTEXTFIELD->Text = "";
 		   }
 
 
-	private: System::Void reset_Click(System::Object^ sender, System::EventArgs^ e) {
-		name->Text = "";
+	private: System::Void ClearButton_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		ClearTextBoxes();
 	}
-	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-};
+	};
 }
