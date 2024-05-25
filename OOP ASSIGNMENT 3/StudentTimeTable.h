@@ -24,11 +24,7 @@ namespace OOPASSIGNMENT2
             //
             //TODO: Add the constructor code here
             //
-
-            // Display student information at the top of the form
             DisplayStudentInfo(studentName, enrollmentID, sectionName);
-
-            // Populate the DataGridView with student timetable data for the specified section
             PopulateStudentTimeTable(sectionName);
         }
 
@@ -68,9 +64,9 @@ namespace OOPASSIGNMENT2
             // dataGridView1
             // 
             this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-            this->dataGridView1->Location = System::Drawing::Point(12, 100); // Adjusted position
+            this->dataGridView1->Location = System::Drawing::Point(12, 100);
             this->dataGridView1->Name = L"dataGridView1";
-            this->dataGridView1->Size = System::Drawing::Size(1000, 318); // Adjusted size
+            this->dataGridView1->Size = System::Drawing::Size(1000, 318);
             this->dataGridView1->TabIndex = 0;
             // 
             // StudentTimeTable
@@ -80,25 +76,23 @@ namespace OOPASSIGNMENT2
             this->ClientSize = System::Drawing::Size(1000, 450);
             this->Controls->Add(this->dataGridView1);
 
-            // Now, let's add a panel to contain the labels
-            Label^ nameLabel = gcnew Label();
-            nameLabel->Text = "Student Name: ";
-            nameLabel->Location = Point(10, 10);
-            nameLabel->AutoSize = true;
-            this->Controls->Add(nameLabel);
+            Label^ NameLabel = gcnew Label();
+            NameLabel->Text = "Student Name: ";
+            NameLabel->Location = Point(10, 10);
+            NameLabel->AutoSize = true;
+            this->Controls->Add(NameLabel);
 
-            Label^ idLabel = gcnew Label();
-            idLabel->Text = "Enrollment ID: ";
-            idLabel->Location = Point(10, 30);
-            idLabel->AutoSize = true;
-            this->Controls->Add(idLabel);
+            Label^ EnrollmentIDLabel = gcnew Label();
+            EnrollmentIDLabel->Text = "Enrollment ID: ";
+            EnrollmentIDLabel->Location = Point(10, 30);
+            EnrollmentIDLabel->AutoSize = true;
+            this->Controls->Add(EnrollmentIDLabel);
 
-            Label^ sectionLabel = gcnew Label();
-            sectionLabel->Text = "Section: ";
-            sectionLabel->Location = Point(10, 50);
-            sectionLabel->AutoSize = true;
-            this->Controls->Add(sectionLabel);
-
+            Label^ SectionLabel = gcnew Label();
+            SectionLabel->Text = "Section: ";
+            SectionLabel->Location = Point(10, 50);
+            SectionLabel->AutoSize = true;
+            this->Controls->Add(SectionLabel);
 
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
             this->ResumeLayout(false);
@@ -106,33 +100,29 @@ namespace OOPASSIGNMENT2
 
 #pragma endregion
 
-        // Method to populate the DataGridView with student timetable data
-        // Method to populate the DataGridView with student timetable data
         void DisplayStudentInfo(String^ studentName, String^ enrollmentID, String^ sectionName)
         {
-            // Create labels to display student information
-            Label^ nameLabel = gcnew Label();
-            nameLabel->Text = studentName;
-            nameLabel->Location = Point(150, 10);
-            nameLabel->AutoSize = true;
-            this->Controls->Add(nameLabel);
+            Label^ NameLabel = gcnew Label();
+            NameLabel->Text = studentName;
+            NameLabel->Location = Point(150, 10);
+            NameLabel->AutoSize = true;
+            this->Controls->Add(NameLabel);
 
-            Label^ idLabel = gcnew Label();
-            idLabel->Text = enrollmentID;
-            idLabel->Location = Point(150, 30);
-            idLabel->AutoSize = true;
-            this->Controls->Add(idLabel);
+            Label^ EnrollmentIDLabel = gcnew Label();
+            EnrollmentIDLabel->Text = enrollmentID;
+            EnrollmentIDLabel->Location = Point(150, 30);
+            EnrollmentIDLabel->AutoSize = true;
+            this->Controls->Add(EnrollmentIDLabel);
 
-            Label^ sectionLabel = gcnew Label();
-            sectionLabel->Text = sectionName;
-            sectionLabel->Location = Point(150, 50);
-            sectionLabel->AutoSize = true;
-            this->Controls->Add(sectionLabel);
+            Label^ SectionLabel = gcnew Label();
+            SectionLabel->Text = sectionName;
+            SectionLabel->Location = Point(150, 50);
+            SectionLabel->AutoSize = true;
+            this->Controls->Add(SectionLabel);
         }
 
         void PopulateStudentTimeTable(String^ sectionName)
         {
-            // Database connection details
             String^ connectionString = "Server=DESKTOP-MN4CFP4;Database=TIMETABLEDB;Integrated Security=True;";
             String^ query = "SELECT DayOfWeek, StartTime, EndTime, CourseName, TeacherName, RoomID "
                 "FROM Timetables "
@@ -140,22 +130,17 @@ namespace OOPASSIGNMENT2
 
             try
             {
-                // Open a connection to the database
                 SqlConnection^ connection = gcnew SqlConnection(connectionString);
                 SqlCommand^ command = gcnew SqlCommand(query, connection);
                 command->Parameters->AddWithValue("@sectionID", sectionName);
 
-                // Open the database connection
                 connection->Open();
 
-                // Execute the query
                 SqlDataReader^ reader = command->ExecuteReader();
 
-                // Clear existing rows and columns in the DataGridView
                 dataGridView1->Rows->Clear();
                 dataGridView1->Columns->Clear();
 
-                // Add columns to the DataGridView
                 dataGridView1->Columns->Add("Day", "Day");
                 dataGridView1->Columns->Add("Start Time", "Start Time");
                 dataGridView1->Columns->Add("End Time", "End Time");
@@ -163,7 +148,6 @@ namespace OOPASSIGNMENT2
                 dataGridView1->Columns->Add("Teacher Name", "Teacher Name");
                 dataGridView1->Columns->Add("Room ID", "Room ID");
 
-                // Populate the DataGridView with data from the database
                 while (reader->Read())
                 {
                     String^ day = reader["DayOfWeek"]->ToString();
@@ -173,17 +157,14 @@ namespace OOPASSIGNMENT2
                     String^ teacherName = reader["TeacherName"]->ToString();
                     String^ roomID = reader["RoomID"]->ToString();
 
-                    // Add the data to the DataGridView
                     dataGridView1->Rows->Add(day, startTime, endTime, courseName, teacherName, roomID);
                 }
 
-                // Close the database connection and the reader
                 reader->Close();
                 connection->Close();
             }
             catch (Exception^ ex)
             {
-                // Display an error message if an exception occurs
                 MessageBox::Show("An error occurred while fetching timetable data: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
             }
         }
