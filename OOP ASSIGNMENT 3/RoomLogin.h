@@ -36,14 +36,24 @@ namespace OOPASSIGNMENT2
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::Label^ TimeTableLabel;
+	protected:
+
+	protected:
+
 	protected:
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ ok;
-	private: System::Windows::Forms::Button^ reset;
-	private: System::Windows::Forms::TextBox^ name;
-	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Button^ CloseButton;
+
+
+	private: System::Windows::Forms::Button^ ViewButton;
+	private: System::Windows::Forms::Button^ ClearButton;
+
+
+	private: System::Windows::Forms::TextBox^ RoomIDTEXTFIELD;
+
+	private: System::Windows::Forms::Label^ RoomIDLABEL;
+
 
 	private:
 		/// <summary>
@@ -59,28 +69,27 @@ namespace OOPASSIGNMENT2
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(RoomLogin::typeid));
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->TimeTableLabel = (gcnew System::Windows::Forms::Label());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->ok = (gcnew System::Windows::Forms::Button());
-			this->reset = (gcnew System::Windows::Forms::Button());
-			this->name = (gcnew System::Windows::Forms::TextBox());
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->CloseButton = (gcnew System::Windows::Forms::Button());
+			this->ViewButton = (gcnew System::Windows::Forms::Button());
+			this->ClearButton = (gcnew System::Windows::Forms::Button());
+			this->RoomIDTEXTFIELD = (gcnew System::Windows::Forms::TextBox());
+			this->RoomIDLABEL = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
-			// textBox1
+			// TimeTableLabel
 			// 
-			this->textBox1->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
-			this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->TimeTableLabel->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
+			this->TimeTableLabel->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->TimeTableLabel->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox1->Location = System::Drawing::Point(111, 211);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->ScrollBars = System::Windows::Forms::ScrollBars::Horizontal;
-			this->textBox1->Size = System::Drawing::Size(420, 28);
-			this->textBox1->TabIndex = 47;
-			this->textBox1->Text = L"      Time-table Managemnet System";
+			this->TimeTableLabel->Location = System::Drawing::Point(111, 211);
+			this->TimeTableLabel->Name = L"TimeTableLabel";
+			this->TimeTableLabel->Size = System::Drawing::Size(420, 28);
+			this->TimeTableLabel->TabIndex = 47;
+			this->TimeTableLabel->Text = L"      Time-table Management System";
 			// 
 			// pictureBox1
 			// 
@@ -93,65 +102,65 @@ namespace OOPASSIGNMENT2
 			this->pictureBox1->TabIndex = 46;
 			this->pictureBox1->TabStop = false;
 			// 
-			// button1
+			// CloseButton
 			// 
-			this->button1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
-			this->button1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->CloseButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->CloseButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->Location = System::Drawing::Point(448, 405);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(186, 51);
-			this->button1->TabIndex = 45;
-			this->button1->Text = L"Exit";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &RoomLogin::button1_Click);
+			this->CloseButton->Location = System::Drawing::Point(448, 405);
+			this->CloseButton->Name = L"CloseButton";
+			this->CloseButton->Size = System::Drawing::Size(186, 51);
+			this->CloseButton->TabIndex = 45;
+			this->CloseButton->Text = L"Close";
+			this->CloseButton->UseVisualStyleBackColor = true;
+			this->CloseButton->Click += gcnew System::EventHandler(this, &RoomLogin::CloseButton_Click);
 			// 
-			// ok
+			// ViewButton
 			// 
-			this->ok->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
-			this->ok->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->ViewButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->ViewButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->ok->Location = System::Drawing::Point(12, 405);
-			this->ok->Name = L"ok";
-			this->ok->Size = System::Drawing::Size(182, 51);
-			this->ok->TabIndex = 41;
-			this->ok->Text = L"Login";
-			this->ok->UseVisualStyleBackColor = true;
-			this->ok->Click += gcnew System::EventHandler(this, &RoomLogin::ok_Click);
+			this->ViewButton->Location = System::Drawing::Point(12, 405);
+			this->ViewButton->Name = L"ViewButton";
+			this->ViewButton->Size = System::Drawing::Size(182, 51);
+			this->ViewButton->TabIndex = 41;
+			this->ViewButton->Text = L"View";
+			this->ViewButton->UseVisualStyleBackColor = true;
+			this->ViewButton->Click += gcnew System::EventHandler(this, &RoomLogin::ViewButton_Click);
 			// 
-			// reset
+			// ClearButton
 			// 
-			this->reset->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
-			this->reset->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->ClearButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->ClearButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->reset->Location = System::Drawing::Point(215, 405);
-			this->reset->Name = L"reset";
-			this->reset->Size = System::Drawing::Size(199, 51);
-			this->reset->TabIndex = 43;
-			this->reset->Text = L"Reset";
-			this->reset->UseVisualStyleBackColor = true;
-			this->reset->Click += gcnew System::EventHandler(this, &RoomLogin::reset_Click);
+			this->ClearButton->Location = System::Drawing::Point(215, 405);
+			this->ClearButton->Name = L"ClearButton";
+			this->ClearButton->Size = System::Drawing::Size(199, 51);
+			this->ClearButton->TabIndex = 43;
+			this->ClearButton->Text = L"Clear";
+			this->ClearButton->UseVisualStyleBackColor = true;
+			this->ClearButton->Click += gcnew System::EventHandler(this, &RoomLogin::ClearButton_Click);
 			// 
-			// name
+			// RoomIDTEXTFIELD
 			// 
-			this->name->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->RoomIDTEXTFIELD->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->name->Location = System::Drawing::Point(2, 304);
-			this->name->Name = L"name";
-			this->name->Size = System::Drawing::Size(643, 35);
-			this->name->TabIndex = 44;
+			this->RoomIDTEXTFIELD->Location = System::Drawing::Point(2, 304);
+			this->RoomIDTEXTFIELD->Name = L"RoomIDTEXTFIELD";
+			this->RoomIDTEXTFIELD->Size = System::Drawing::Size(643, 35);
+			this->RoomIDTEXTFIELD->TabIndex = 44;
 			// 
-			// label1
+			// RoomIDLABEL
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->RoomIDLABEL->AutoSize = true;
+			this->RoomIDLABEL->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(-3, 265);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(325, 27);
-			this->label1->TabIndex = 42;
-			this->label1->Text = L"Enter Room ( 4-17, 4-18, 4-19 ):";
-			this->label1->TextAlign = System::Drawing::ContentAlignment::TopCenter;
+			this->RoomIDLABEL->Location = System::Drawing::Point(-3, 265);
+			this->RoomIDLABEL->Name = L"RoomIDLABEL";
+			this->RoomIDLABEL->Size = System::Drawing::Size(325, 27);
+			this->RoomIDLABEL->TabIndex = 42;
+			this->RoomIDLABEL->Text = L"Enter Room ( 4-17, 4-18, 4-19 ):";
+			this->RoomIDLABEL->TextAlign = System::Drawing::ContentAlignment::TopCenter;
 			// 
 			// RoomLogin
 			// 
@@ -159,38 +168,34 @@ namespace OOPASSIGNMENT2
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->ClientSize = System::Drawing::Size(659, 468);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->TimeTableLabel);
 			this->Controls->Add(this->pictureBox1);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->ok);
-			this->Controls->Add(this->reset);
-			this->Controls->Add(this->name);
-			this->Controls->Add(this->label1);
+			this->Controls->Add(this->CloseButton);
+			this->Controls->Add(this->ViewButton);
+			this->Controls->Add(this->ClearButton);
+			this->Controls->Add(this->RoomIDTEXTFIELD);
+			this->Controls->Add(this->RoomIDLABEL);
 			this->Name = L"RoomLogin";
-			this->Text = L"Room";
+			this->Text = L"Room Login";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		Application::Exit();
+	private: System::Void CloseButton_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		this->Hide();
 	}
 
-	private: System::Void ok_Click(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void ViewButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		// Retrieve the entered room number
-		String^ room = name->Text;
+		String^ RoomID = RoomIDTEXTFIELD->Text;
 
-		// Check room validity from the database
-		if (IsRoomValid(room))
+		if (IsRoomValid(RoomID))
 		{
-			// Hide the login form
 			this->Hide();
-
-			// Open the RoomTimeTable form
-			RoomTimeTable^ timetable = gcnew RoomTimeTable(room);
+			RoomTimeTable^ timetable = gcnew RoomTimeTable(RoomID);
 			timetable->Show();
 		}
 		else
@@ -198,26 +203,22 @@ namespace OOPASSIGNMENT2
 			MessageBox::Show("Invalid room number!", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 	}
-		   bool IsRoomValid(String^ room)
+		   bool IsRoomValid(String^ RoomID)
 		   {
-			   // Connection string to your database
 			   String^ connectionString = "Data Source = DESKTOP-MN4CFP4; Initial Catalog = TIMETABLEDB;Integrated Security = True";
 
-			   // SQL query to check if the room exists in the database
 			   String^ query = "SELECT COUNT(*) FROM Rooms WHERE RoomID = @RoomID";
 
-			   // Use SqlConnection and SqlCommand to execute the query
 			   SqlConnection^ connection = gcnew SqlConnection(connectionString);
 			   SqlCommand^ command = gcnew SqlCommand(query, connection);
 
-			   // Add parameters to the query
-			   command->Parameters->AddWithValue("@RoomID", room);
+			   command->Parameters->AddWithValue("@RoomID", RoomID);
 
 			   try
 			   {
 				   connection->Open();
 				   int count = safe_cast<int>(command->ExecuteScalar());
-				   return (count > 0); // If count is greater than 0, room exists
+				   return (count > 0);
 			   }
 			   catch (Exception^ ex)
 			   {
@@ -229,8 +230,14 @@ namespace OOPASSIGNMENT2
 				   connection->Close();
 			   }
 		   }
-	private: System::Void reset_Click(System::Object^ sender, System::EventArgs^ e) {
-		name->Text = "";
+
+		   void ClearTextBoxes()
+		   {
+			   RoomIDTEXTFIELD->Text = "";
+		   }
+	private: System::Void ClearButton_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		ClearTextBoxes();
 	}
 	};
 }
