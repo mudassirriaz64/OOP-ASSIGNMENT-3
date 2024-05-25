@@ -17,13 +17,13 @@ namespace OOPASSIGNMENT2 {
 	public ref class RoomTimeTable : public System::Windows::Forms::Form
 	{
 	public:
-		RoomTimeTable(String^ roomName)
+		RoomTimeTable(String^ ID)
 		{
-			InitializeComponent(roomName);
+			InitializeComponent(ID);
 			//
 			//TODO: Add the constructor code here
 			//
-			PopulateRoomTimeTable(roomName);
+			PopulateRoomTimeTable(ID);
 		}
 
 	protected:
@@ -50,7 +50,7 @@ namespace OOPASSIGNMENT2 {
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
-		void InitializeComponent(String^ roomName)
+		void InitializeComponent(String^ RoomID)
 		{
 			this->components = gcnew System::ComponentModel::Container();
 			this->dataGridView1 = gcnew System::Windows::Forms::DataGridView();
@@ -77,21 +77,19 @@ namespace OOPASSIGNMENT2 {
 			this->ResumeLayout(false);
 
 			Label^ roomLabel = gcnew Label();
-			roomLabel->Text = "TimeTable For Room " + roomName;
+			roomLabel->Text = "TimeTable For Room " + RoomID;
 			roomLabel->AutoSize = true;
 			roomLabel->Location = Point(12, 9);
 			this->Controls->Add(roomLabel);
 		}
 #pragma endregion
 
-		void PopulateRoomTimeTable(String^ roomID)
+		void PopulateRoomTimeTable(String^ RoomID)
 		{
 			dataGridView1->Rows->Clear();
 
-			// Clear existing columns
 			dataGridView1->Columns->Clear();
 
-			// Add columns to the DataGridView
 			dataGridView1->Columns->Add("Day", "Day");
 			dataGridView1->Columns->Add("Start Time", "Start Time");
 			dataGridView1->Columns->Add("End Time", "End Time");
@@ -101,18 +99,14 @@ namespace OOPASSIGNMENT2 {
 
 			try
 			{
-				// Connect to the database
 				SqlConnection^ con = gcnew SqlConnection("Data Source=DESKTOP-MN4CFP4;Initial Catalog=TIMETABLEDB;Integrated Security=True");
 				con->Open();
 
-				// Query to retrieve timetable data for the specified room
 				SqlCommand^ cmd = gcnew SqlCommand("SELECT DayOfWeek, StartTime, EndTime, SectionID, CourseName, TeacherName FROM Timetables WHERE RoomID = @RoomID", con);
-				cmd->Parameters->AddWithValue("@RoomID", roomID);
+				cmd->Parameters->AddWithValue("@RoomID", RoomID);
 
-				// Execute the query
 				SqlDataReader^ reader = cmd->ExecuteReader();
 
-				// Iterate through the result set and populate the DataGridView
 				while (reader->Read())
 				{
 					String^ day = reader["DayOfWeek"]->ToString();
@@ -122,17 +116,13 @@ namespace OOPASSIGNMENT2 {
 					String^ courseName = reader["CourseName"]->ToString();
 					String^ teacherName = reader["TeacherName"]->ToString();
 
-					// Add the data to the DataGridView
 					dataGridView1->Rows->Add(day, startTime, endTime, sectionID, courseName, teacherName);
 				}
-
-				// Close the reader and database connection
 				reader->Close();
 				con->Close();
 			}
 			catch (Exception^ ex)
 			{
-				// Handle any exceptions
 				MessageBox::Show("Error: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			}
 		}

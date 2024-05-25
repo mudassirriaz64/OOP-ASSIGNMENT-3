@@ -34,15 +34,23 @@ namespace OOPASSIGNMENT2
 	private: System::Windows::Forms::TextBox^ textBox1;
 	protected:
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ ok;
-	private: System::Windows::Forms::Button^ reset;
-	private: System::Windows::Forms::TextBox^ name;
-	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::TextBox^ textBox2;
+	private: System::Windows::Forms::Button^ CloseButton;
+
+	private: System::Windows::Forms::Button^ AddButton;
+	private: System::Windows::Forms::Button^ ClearButton;
+
+
+	private: System::Windows::Forms::TextBox^ NameTextBox;
+
+	private: System::Windows::Forms::Label^ NameLabel;
+	private: System::Windows::Forms::Label^ IDLabel;
+
+
+	private: System::Windows::Forms::TextBox^ IDTextBox;
+
 	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::TextBox^ textBox3;
+	private: System::Windows::Forms::TextBox^ SectionTextBox;
+
 
 	private:
 		System::ComponentModel::Container^ components;
@@ -53,15 +61,15 @@ namespace OOPASSIGNMENT2
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(AddStudentForm::typeid));
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->ok = (gcnew System::Windows::Forms::Button());
-			this->reset = (gcnew System::Windows::Forms::Button());
-			this->name = (gcnew System::Windows::Forms::TextBox());
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->CloseButton = (gcnew System::Windows::Forms::Button());
+			this->AddButton = (gcnew System::Windows::Forms::Button());
+			this->ClearButton = (gcnew System::Windows::Forms::Button());
+			this->NameTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->NameLabel = (gcnew System::Windows::Forms::Label());
+			this->IDLabel = (gcnew System::Windows::Forms::Label());
+			this->IDTextBox = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
+			this->SectionTextBox = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -78,7 +86,6 @@ namespace OOPASSIGNMENT2
 			this->textBox1->TabIndex = 47;
 			this->textBox1->Text = L"     Add Student";
 			this->textBox1->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			this->textBox1->TextChanged += gcnew System::EventHandler(this, &AddStudentForm::textBox1_TextChanged);
 			// 
 			// pictureBox1
 			// 
@@ -91,84 +98,84 @@ namespace OOPASSIGNMENT2
 			this->pictureBox1->TabIndex = 46;
 			this->pictureBox1->TabStop = false;
 			// 
-			// button1
+			// CloseButton
 			// 
-			this->button1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
-			this->button1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->CloseButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->CloseButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->Location = System::Drawing::Point(448, 579);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(186, 51);
-			this->button1->TabIndex = 45;
-			this->button1->Text = L"Exit";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &AddStudentForm::button1_Click);
+			this->CloseButton->Location = System::Drawing::Point(448, 579);
+			this->CloseButton->Name = L"CloseButton";
+			this->CloseButton->Size = System::Drawing::Size(186, 51);
+			this->CloseButton->TabIndex = 45;
+			this->CloseButton->Text = L"Close";
+			this->CloseButton->UseVisualStyleBackColor = true;
+			this->CloseButton->Click += gcnew System::EventHandler(this, &AddStudentForm::CloseButton_Click);
 			// 
-			// ok
+			// AddButton
 			// 
-			this->ok->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
-			this->ok->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->AddButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->AddButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->ok->Location = System::Drawing::Point(12, 579);
-			this->ok->Name = L"ok";
-			this->ok->Size = System::Drawing::Size(182, 51);
-			this->ok->TabIndex = 41;
-			this->ok->Text = L"Add";
-			this->ok->UseVisualStyleBackColor = true;
-			this->ok->Click += gcnew System::EventHandler(this, &AddStudentForm::ok_Click);
+			this->AddButton->Location = System::Drawing::Point(12, 579);
+			this->AddButton->Name = L"AddButton";
+			this->AddButton->Size = System::Drawing::Size(182, 51);
+			this->AddButton->TabIndex = 41;
+			this->AddButton->Text = L"Add";
+			this->AddButton->UseVisualStyleBackColor = true;
+			this->AddButton->Click += gcnew System::EventHandler(this, &AddStudentForm::AddButton_Click);
 			// 
-			// reset
+			// ClearButton
 			// 
-			this->reset->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
-			this->reset->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->ClearButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->ClearButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->reset->Location = System::Drawing::Point(215, 579);
-			this->reset->Name = L"reset";
-			this->reset->Size = System::Drawing::Size(199, 51);
-			this->reset->TabIndex = 43;
-			this->reset->Text = L"Clear";
-			this->reset->UseVisualStyleBackColor = true;
-			this->reset->Click += gcnew System::EventHandler(this, &AddStudentForm::reset_Click);
+			this->ClearButton->Location = System::Drawing::Point(215, 579);
+			this->ClearButton->Name = L"ClearButton";
+			this->ClearButton->Size = System::Drawing::Size(199, 51);
+			this->ClearButton->TabIndex = 43;
+			this->ClearButton->Text = L"Clear";
+			this->ClearButton->UseVisualStyleBackColor = true;
+			this->ClearButton->Click += gcnew System::EventHandler(this, &AddStudentForm::ClearButton_Click);
 			// 
-			// name
+			// NameTextBox
 			// 
-			this->name->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->NameTextBox->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->name->Location = System::Drawing::Point(2, 328);
-			this->name->Name = L"name";
-			this->name->Size = System::Drawing::Size(643, 35);
-			this->name->TabIndex = 44;
+			this->NameTextBox->Location = System::Drawing::Point(2, 328);
+			this->NameTextBox->Name = L"NameTextBox";
+			this->NameTextBox->Size = System::Drawing::Size(643, 35);
+			this->NameTextBox->TabIndex = 44;
 			// 
-			// label1
+			// NameLabel
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->NameLabel->AutoSize = true;
+			this->NameLabel->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(2, 293);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(69, 27);
-			this->label1->TabIndex = 48;
-			this->label1->Text = L"Name";
+			this->NameLabel->Location = System::Drawing::Point(2, 293);
+			this->NameLabel->Name = L"NameLabel";
+			this->NameLabel->Size = System::Drawing::Size(160, 27);
+			this->NameLabel->TabIndex = 48;
+			this->NameLabel->Text = L"Student Name :";
 			// 
-			// label2
+			// IDLabel
 			// 
-			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->IDLabel->AutoSize = true;
+			this->IDLabel->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(2, 384);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(150, 27);
-			this->label2->TabIndex = 50;
-			this->label2->Text = L"Enrollment ID";
+			this->IDLabel->Location = System::Drawing::Point(2, 384);
+			this->IDLabel->Name = L"IDLabel";
+			this->IDLabel->Size = System::Drawing::Size(162, 27);
+			this->IDLabel->TabIndex = 50;
+			this->IDLabel->Text = L"Enrollment ID :";
 			// 
-			// textBox2
+			// IDTextBox
 			// 
-			this->textBox2->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->IDTextBox->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox2->Location = System::Drawing::Point(2, 418);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(643, 35);
-			this->textBox2->TabIndex = 49;
+			this->IDTextBox->Location = System::Drawing::Point(2, 418);
+			this->IDTextBox->Name = L"IDTextBox";
+			this->IDTextBox->Size = System::Drawing::Size(643, 35);
+			this->IDTextBox->TabIndex = 49;
 			// 
 			// label3
 			// 
@@ -177,18 +184,18 @@ namespace OOPASSIGNMENT2
 				static_cast<System::Byte>(0)));
 			this->label3->Location = System::Drawing::Point(2, 475);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(83, 27);
+			this->label3->Size = System::Drawing::Size(126, 27);
 			this->label3->TabIndex = 52;
-			this->label3->Text = L"Section";
+			this->label3->Text = L"Section ID :";
 			// 
-			// textBox3
+			// SectionTextBox
 			// 
-			this->textBox3->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->SectionTextBox->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox3->Location = System::Drawing::Point(2, 509);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(643, 35);
-			this->textBox3->TabIndex = 51;
+			this->SectionTextBox->Location = System::Drawing::Point(2, 509);
+			this->SectionTextBox->Name = L"SectionTextBox";
+			this->SectionTextBox->Size = System::Drawing::Size(643, 35);
+			this->SectionTextBox->TabIndex = 51;
 			// 
 			// AddStudentForm
 			// 
@@ -197,16 +204,16 @@ namespace OOPASSIGNMENT2
 			this->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->ClientSize = System::Drawing::Size(659, 642);
 			this->Controls->Add(this->label3);
-			this->Controls->Add(this->textBox3);
-			this->Controls->Add(this->label2);
-			this->Controls->Add(this->textBox2);
-			this->Controls->Add(this->label1);
+			this->Controls->Add(this->SectionTextBox);
+			this->Controls->Add(this->IDLabel);
+			this->Controls->Add(this->IDTextBox);
+			this->Controls->Add(this->NameLabel);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->pictureBox1);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->ok);
-			this->Controls->Add(this->reset);
-			this->Controls->Add(this->name);
+			this->Controls->Add(this->CloseButton);
+			this->Controls->Add(this->AddButton);
+			this->Controls->Add(this->ClearButton);
+			this->Controls->Add(this->NameTextBox);
 			this->Name = L"AddStudentForm";
 			this->Text = L"AddStudentForm";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
@@ -215,21 +222,19 @@ namespace OOPASSIGNMENT2
 
 		}
 #pragma endregion
-	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-	}
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void CloseButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->Close();
 	}
-	private: System::Void reset_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void ClearButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		clearfields();
+		ClearTextBoxes();
 	}
-	private: System::Void ok_Click(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void AddButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		String^ studentName = name->Text;
-		String^ enrollmentID = textBox2->Text;
-		String^ sectionID = textBox3->Text;
+		String^ studentName = NameTextBox->Text;
+		String^ enrollmentID = IDTextBox->Text;
+		String^ sectionID = SectionTextBox->Text;
 
 		if (studentName == "" || enrollmentID == "" || sectionID == "")
 		{
@@ -240,7 +245,7 @@ namespace OOPASSIGNMENT2
 		{
 			AddStudentToDatabase(studentName, enrollmentID, sectionID);
 			MessageBox::Show("Student added successfully.");
-			clearfields();
+			ClearTextBoxes();
 		}
 	}
 
@@ -258,7 +263,7 @@ namespace OOPASSIGNMENT2
 				   checkSectionCmd->Parameters->AddWithValue("@SectionID", sectionID);
 				   int sectionCount = (int)checkSectionCmd->ExecuteScalar();
 
-				   if (sectionCount == 0) 
+				   if (sectionCount == 0)
 				   {
 					   String^ addSectionQuery = "INSERT INTO Sections (SectionID) VALUES (@SectionID)";
 					   SqlCommand^ addSectionCmd = gcnew SqlCommand(addSectionQuery, con);
@@ -277,18 +282,18 @@ namespace OOPASSIGNMENT2
 
 				   con->Close();
 			   }
-			   catch (Exception^ ex) 
+			   catch (Exception^ ex)
 			   {
 				   con->Close();
 				   throw ex;
 			   }
 		   }
 
-		   void clearfields()
+		   void ClearTextBoxes()
 		   {
-			  name->Text="";
-			  textBox2->Text="";
-			  textBox3->Text="";
+			   NameTextBox->Text = "";
+			   IDTextBox->Text = "";
+			   SectionTextBox->Text = "";
 		   }
 	};
 }

@@ -48,21 +48,33 @@ namespace OOPASSIGNMENT2
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::TextBox^ textBox2;
+	private: System::Windows::Forms::Label^ TimeTableLabel;
+	private: System::Windows::Forms::Button^ DisplayStudentButton;
+	private: System::Windows::Forms::Button^ RemoveStudentButton;
 	protected:
-	private: System::Windows::Forms::Button^ button9;
-	private: System::Windows::Forms::Button^ button6;
-	private: System::Windows::Forms::Button^ button5;
-	private: System::Windows::Forms::Button^ button4;
-	private: System::Windows::Forms::Button^ button3;
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button1;
+
+	protected:
+
+
+	private: System::Windows::Forms::Button^ AddStudentButton;
+
+	private: System::Windows::Forms::Button^ RoomTimeTableButton;
+
+	private: System::Windows::Forms::Button^ SectionTimeTableButton;
+	private: System::Windows::Forms::Button^ StudentTimeTableButton;
+
+
+
+	private: System::Windows::Forms::Button^ TeacherTimeTableButton;
+
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::Button^ AddTeacherButton;
 	private: System::Windows::Forms::Button^ RemoveTeacherButton;
-	private: System::Windows::Forms::Button^ DisplayButtonButton;
+	private: System::Windows::Forms::Button^ DisplayTeacherButton;
+
 	private: System::Windows::Forms::Button^ ExitButton;
-	private: System::Windows::Forms::Button^ button7;
+	private: System::Windows::Forms::Button^ AddTimeSlotButton;
+
 
 
 
@@ -82,141 +94,138 @@ namespace OOPASSIGNMENT2
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainMenuForm::typeid));
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->button9 = (gcnew System::Windows::Forms::Button());
-			this->button6 = (gcnew System::Windows::Forms::Button());
-			this->button5 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->TimeTableLabel = (gcnew System::Windows::Forms::Label());
+			this->DisplayStudentButton = (gcnew System::Windows::Forms::Button());
+			this->RemoveStudentButton = (gcnew System::Windows::Forms::Button());
+			this->AddStudentButton = (gcnew System::Windows::Forms::Button());
+			this->RoomTimeTableButton = (gcnew System::Windows::Forms::Button());
+			this->SectionTimeTableButton = (gcnew System::Windows::Forms::Button());
+			this->StudentTimeTableButton = (gcnew System::Windows::Forms::Button());
+			this->TeacherTimeTableButton = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->AddTeacherButton = (gcnew System::Windows::Forms::Button());
 			this->RemoveTeacherButton = (gcnew System::Windows::Forms::Button());
-			this->DisplayButtonButton = (gcnew System::Windows::Forms::Button());
+			this->DisplayTeacherButton = (gcnew System::Windows::Forms::Button());
 			this->ExitButton = (gcnew System::Windows::Forms::Button());
-			this->button7 = (gcnew System::Windows::Forms::Button());
+			this->AddTimeSlotButton = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
-			// textBox2
+			// TimeTableLabel
 			// 
-			this->textBox2->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
-			this->textBox2->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox2->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->TimeTableLabel->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
+			this->TimeTableLabel->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox2->Location = System::Drawing::Point(71, 175);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->ScrollBars = System::Windows::Forms::ScrollBars::Horizontal;
-			this->textBox2->Size = System::Drawing::Size(420, 28);
-			this->textBox2->TabIndex = 31;
-			this->textBox2->Text = L"      Time-table Management System";
+			this->TimeTableLabel->Location = System::Drawing::Point(189, 246);
+			this->TimeTableLabel->Name = L"TimeTableLabel";
+			this->TimeTableLabel->Size = System::Drawing::Size(420, 28);
+			this->TimeTableLabel->TabIndex = 31;
+			this->TimeTableLabel->Text = L"      Time-table Management System";
 			// 
-			// button9
+			// DisplayStudentButton
 			// 
-			this->button9->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->DisplayStudentButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button9->Location = System::Drawing::Point(119, 479);
-			this->button9->Name = L"button9";
-			this->button9->Size = System::Drawing::Size(308, 38);
-			this->button9->TabIndex = 30;
-			this->button9->Text = L"Display Students";
-			this->button9->UseVisualStyleBackColor = true;
-			this->button9->Click += gcnew System::EventHandler(this, &MainMenuForm::DisplayStudentsButton_Click);
+			this->DisplayStudentButton->Location = System::Drawing::Point(417, 406);
+			this->DisplayStudentButton->Name = L"DisplayStudentButton";
+			this->DisplayStudentButton->Size = System::Drawing::Size(308, 38);
+			this->DisplayStudentButton->TabIndex = 30;
+			this->DisplayStudentButton->Text = L"Display Students";
+			this->DisplayStudentButton->UseVisualStyleBackColor = true;
+			this->DisplayStudentButton->Click += gcnew System::EventHandler(this, &MainMenuForm::DisplayStudentsButton_Click);
 			// 
-			// button6
+			// RemoveStudentButton
 			// 
-			this->button6->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->RemoveStudentButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button6->Location = System::Drawing::Point(119, 434);
-			this->button6->Name = L"button6";
-			this->button6->Size = System::Drawing::Size(308, 39);
-			this->button6->TabIndex = 29;
-			this->button6->Text = L"Remove Student";
-			this->button6->UseVisualStyleBackColor = true;
-			this->button6->Click += gcnew System::EventHandler(this, &MainMenuForm::RemoveStudentButton_Click);
+			this->RemoveStudentButton->Location = System::Drawing::Point(417, 495);
+			this->RemoveStudentButton->Name = L"RemoveStudentButton";
+			this->RemoveStudentButton->Size = System::Drawing::Size(308, 39);
+			this->RemoveStudentButton->TabIndex = 29;
+			this->RemoveStudentButton->Text = L"Remove Student";
+			this->RemoveStudentButton->UseVisualStyleBackColor = true;
+			this->RemoveStudentButton->Click += gcnew System::EventHandler(this, &MainMenuForm::RemoveStudentButton_Click);
 			// 
-			// button5
+			// AddStudentButton
 			// 
-			this->button5->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->AddStudentButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button5->Location = System::Drawing::Point(119, 389);
-			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(308, 39);
-			this->button5->TabIndex = 28;
-			this->button5->Text = L"Add Students";
-			this->button5->UseVisualStyleBackColor = true;
-			this->button5->Click += gcnew System::EventHandler(this, &MainMenuForm::AddStudent_Click);
+			this->AddStudentButton->Location = System::Drawing::Point(417, 450);
+			this->AddStudentButton->Name = L"AddStudentButton";
+			this->AddStudentButton->Size = System::Drawing::Size(308, 39);
+			this->AddStudentButton->TabIndex = 28;
+			this->AddStudentButton->Text = L"Add Student";
+			this->AddStudentButton->UseVisualStyleBackColor = true;
+			this->AddStudentButton->Click += gcnew System::EventHandler(this, &MainMenuForm::AddStudentButton_Click);
 			// 
-			// button4
+			// RoomTimeTableButton
 			// 
-			this->button4->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->RoomTimeTableButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button4->Location = System::Drawing::Point(119, 344);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(308, 39);
-			this->button4->TabIndex = 27;
-			this->button4->Text = L"Room Wise Time-table";
-			this->button4->UseVisualStyleBackColor = true;
-			this->button4->Click += gcnew System::EventHandler(this, &MainMenuForm::RoomButton_Click);
+			this->RoomTimeTableButton->Location = System::Drawing::Point(417, 361);
+			this->RoomTimeTableButton->Name = L"RoomTimeTableButton";
+			this->RoomTimeTableButton->Size = System::Drawing::Size(308, 39);
+			this->RoomTimeTableButton->TabIndex = 27;
+			this->RoomTimeTableButton->Text = L"Room Wise Time-table";
+			this->RoomTimeTableButton->UseVisualStyleBackColor = true;
+			this->RoomTimeTableButton->Click += gcnew System::EventHandler(this, &MainMenuForm::RoomTimeTableButton_Click);
 			// 
-			// button3
+			// SectionTimeTableButton
 			// 
-			this->button3->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->SectionTimeTableButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button3->Location = System::Drawing::Point(119, 299);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(308, 39);
-			this->button3->TabIndex = 26;
-			this->button3->Text = L"Section Wise Time-table";
-			this->button3->UseVisualStyleBackColor = true;
-			this->button3->Click += gcnew System::EventHandler(this, &MainMenuForm::Section_Button);
+			this->SectionTimeTableButton->Location = System::Drawing::Point(47, 361);
+			this->SectionTimeTableButton->Name = L"SectionTimeTableButton";
+			this->SectionTimeTableButton->Size = System::Drawing::Size(308, 39);
+			this->SectionTimeTableButton->TabIndex = 26;
+			this->SectionTimeTableButton->Text = L"Section Wise Time-table";
+			this->SectionTimeTableButton->UseVisualStyleBackColor = true;
+			this->SectionTimeTableButton->Click += gcnew System::EventHandler(this, &MainMenuForm::SectionTimeTableButton_Click);
 			// 
-			// button2
+			// StudentTimeTableButton
 			// 
-			this->button2->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->StudentTimeTableButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button2->Location = System::Drawing::Point(119, 254);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(308, 39);
-			this->button2->TabIndex = 25;
-			this->button2->Text = L" Student Wise Time-table";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &MainMenuForm::StudentLogin_Button);
+			this->StudentTimeTableButton->Location = System::Drawing::Point(417, 316);
+			this->StudentTimeTableButton->Name = L"StudentTimeTableButton";
+			this->StudentTimeTableButton->Size = System::Drawing::Size(308, 39);
+			this->StudentTimeTableButton->TabIndex = 25;
+			this->StudentTimeTableButton->Text = L" Student Wise Time-table";
+			this->StudentTimeTableButton->UseVisualStyleBackColor = true;
+			this->StudentTimeTableButton->Click += gcnew System::EventHandler(this, &MainMenuForm::StudentTimeTableButton_Click);
 			// 
-			// button1
+			// TeacherTimeTableButton
 			// 
-			this->button1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->TeacherTimeTableButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->Location = System::Drawing::Point(119, 209);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(308, 39);
-			this->button1->TabIndex = 24;
-			this->button1->Text = L" Teacher Wise Time-table";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &MainMenuForm::Teacherlogin_button);
+			this->TeacherTimeTableButton->Location = System::Drawing::Point(47, 316);
+			this->TeacherTimeTableButton->Name = L"TeacherTimeTableButton";
+			this->TeacherTimeTableButton->Size = System::Drawing::Size(308, 39);
+			this->TeacherTimeTableButton->TabIndex = 24;
+			this->TeacherTimeTableButton->Text = L" Teacher Wise Time-table";
+			this->TeacherTimeTableButton->UseVisualStyleBackColor = true;
+			this->TeacherTimeTableButton->Click += gcnew System::EventHandler(this, &MainMenuForm::TeacherTimeTableButton_Click);
 			// 
 			// pictureBox1
 			// 
 			this->pictureBox1->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(119, 12);
+			this->pictureBox1->Location = System::Drawing::Point(237, 56);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(308, 157);
+			this->pictureBox1->Size = System::Drawing::Size(308, 184);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 23;
 			this->pictureBox1->TabStop = false;
-			this->pictureBox1->Click += gcnew System::EventHandler(this, &MainMenuForm::pictureBox1_Click);
 			// 
 			// AddTeacherButton
 			// 
 			this->AddTeacherButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->AddTeacherButton->Location = System::Drawing::Point(119, 523);
+			this->AddTeacherButton->Location = System::Drawing::Point(47, 450);
 			this->AddTeacherButton->Name = L"AddTeacherButton";
 			this->AddTeacherButton->Size = System::Drawing::Size(308, 39);
 			this->AddTeacherButton->TabIndex = 32;
-			this->AddTeacherButton->Text = L"Add Teachers";
+			this->AddTeacherButton->Text = L"Add Teacher";
 			this->AddTeacherButton->UseVisualStyleBackColor = true;
 			this->AddTeacherButton->Click += gcnew System::EventHandler(this, &MainMenuForm::AddTeacherButton_Click);
 			// 
@@ -224,7 +233,7 @@ namespace OOPASSIGNMENT2
 			// 
 			this->RemoveTeacherButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->RemoveTeacherButton->Location = System::Drawing::Point(119, 568);
+			this->RemoveTeacherButton->Location = System::Drawing::Point(47, 495);
 			this->RemoveTeacherButton->Name = L"RemoveTeacherButton";
 			this->RemoveTeacherButton->Size = System::Drawing::Size(308, 39);
 			this->RemoveTeacherButton->TabIndex = 33;
@@ -232,23 +241,23 @@ namespace OOPASSIGNMENT2
 			this->RemoveTeacherButton->UseVisualStyleBackColor = true;
 			this->RemoveTeacherButton->Click += gcnew System::EventHandler(this, &MainMenuForm::RemoveTeacherButton_Click);
 			// 
-			// DisplayButtonButton
+			// DisplayTeacherButton
 			// 
-			this->DisplayButtonButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->DisplayTeacherButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->DisplayButtonButton->Location = System::Drawing::Point(119, 613);
-			this->DisplayButtonButton->Name = L"DisplayButtonButton";
-			this->DisplayButtonButton->Size = System::Drawing::Size(308, 38);
-			this->DisplayButtonButton->TabIndex = 34;
-			this->DisplayButtonButton->Text = L"Display Teacher";
-			this->DisplayButtonButton->UseVisualStyleBackColor = true;
-			this->DisplayButtonButton->Click += gcnew System::EventHandler(this, &MainMenuForm::DisplayButtonButton_Click);
+			this->DisplayTeacherButton->Location = System::Drawing::Point(47, 406);
+			this->DisplayTeacherButton->Name = L"DisplayTeacherButton";
+			this->DisplayTeacherButton->Size = System::Drawing::Size(308, 38);
+			this->DisplayTeacherButton->TabIndex = 34;
+			this->DisplayTeacherButton->Text = L"Display Teachers";
+			this->DisplayTeacherButton->UseVisualStyleBackColor = true;
+			this->DisplayTeacherButton->Click += gcnew System::EventHandler(this, &MainMenuForm::DisplayTeacherButton_Click);
 			// 
 			// ExitButton
 			// 
 			this->ExitButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->ExitButton->Location = System::Drawing::Point(119, 702);
+			this->ExitButton->Location = System::Drawing::Point(417, 540);
 			this->ExitButton->Name = L"ExitButton";
 			this->ExitButton->Size = System::Drawing::Size(308, 38);
 			this->ExitButton->TabIndex = 35;
@@ -256,129 +265,116 @@ namespace OOPASSIGNMENT2
 			this->ExitButton->UseVisualStyleBackColor = true;
 			this->ExitButton->Click += gcnew System::EventHandler(this, &MainMenuForm::ExitButton_Click);
 			// 
-			// button7
+			// AddTimeSlotButton
 			// 
-			this->button7->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->AddTimeSlotButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button7->Location = System::Drawing::Point(119, 657);
-			this->button7->Name = L"button7";
-			this->button7->Size = System::Drawing::Size(308, 38);
-			this->button7->TabIndex = 36;
-			this->button7->Text = L"Add TimeSlot";
-			this->button7->UseVisualStyleBackColor = true;
-			this->button7->Click += gcnew System::EventHandler(this, &MainMenuForm::button7_Click);
+			this->AddTimeSlotButton->Location = System::Drawing::Point(47, 540);
+			this->AddTimeSlotButton->Name = L"AddTimeSlotButton";
+			this->AddTimeSlotButton->Size = System::Drawing::Size(308, 38);
+			this->AddTimeSlotButton->TabIndex = 36;
+			this->AddTimeSlotButton->Text = L"Add TimeSlot";
+			this->AddTimeSlotButton->UseVisualStyleBackColor = true;
+			this->AddTimeSlotButton->Click += gcnew System::EventHandler(this, &MainMenuForm::AddTimeSlotButton_Click);
 			// 
 			// MainMenuForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
-			this->ClientSize = System::Drawing::Size(562, 799);
-			this->Controls->Add(this->button7);
+			this->ClientSize = System::Drawing::Size(802, 622);
+			this->Controls->Add(this->AddTimeSlotButton);
 			this->Controls->Add(this->ExitButton);
-			this->Controls->Add(this->DisplayButtonButton);
+			this->Controls->Add(this->DisplayTeacherButton);
 			this->Controls->Add(this->RemoveTeacherButton);
 			this->Controls->Add(this->AddTeacherButton);
-			this->Controls->Add(this->textBox2);
-			this->Controls->Add(this->button9);
-			this->Controls->Add(this->button6);
-			this->Controls->Add(this->button5);
-			this->Controls->Add(this->button4);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->TimeTableLabel);
+			this->Controls->Add(this->DisplayStudentButton);
+			this->Controls->Add(this->RemoveStudentButton);
+			this->Controls->Add(this->AddStudentButton);
+			this->Controls->Add(this->RoomTimeTableButton);
+			this->Controls->Add(this->SectionTimeTableButton);
+			this->Controls->Add(this->StudentTimeTableButton);
+			this->Controls->Add(this->TeacherTimeTableButton);
 			this->Controls->Add(this->pictureBox1);
 			this->Name = L"MainMenuForm";
-			this->Text = L"mainform";
+			this->Text = L"Time Table Management System";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
-			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void Teacherlogin_button(System::Object^ sender, System::EventArgs^ e)
-		{
-			this->Hide();
-			TeacherLogin^ teacher = gcnew TeacherLogin();
-			teacher->ShowDialog();
-		}
-	private: System::Void StudentLogin_Button(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void TeacherTimeTableButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
+		TeacherLogin^ teacher = gcnew TeacherLogin();
+		teacher->ShowDialog();
 		this->Hide();
+		this->Show();
+	}
+	private: System::Void StudentTimeTableButton_Click(System::Object^ sender, System::EventArgs^ e)
+	{
 		StudentLogin^ student = gcnew StudentLogin();
 		student->ShowDialog();
 	}
-	private: System::Void Section_Button(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void SectionTimeTableButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		this->Hide();
 		SectionLogin^ section = gcnew SectionLogin();
 		section->ShowDialog();
 	}
 
-	private: System::Void RoomButton_Click(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void RoomTimeTableButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		this->Hide();
 		RoomLogin^ room = gcnew RoomLogin();
 		room->ShowDialog();
 	}
-	private: System::Void AddStudent_Click(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void AddStudentButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		this->Hide();
 		AddStudentForm^ addstudent = gcnew AddStudentForm();
 		addstudent->ShowDialog();
 		this->Show();
 	}
 	private: System::Void RemoveStudentButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		this->Hide();
 		RemoveStudentForm^ removestudent = gcnew RemoveStudentForm();
 		removestudent->ShowDialog();
 		this->Show();
 	}
 	private: System::Void DisplayStudentsButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		this->Hide();
 		DisplayStudents^ displaystudents = gcnew DisplayStudents();
 		displaystudents->ShowDialog();
 		this->Show();
 	}
-	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void RemoveTeacherButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
+		RemoveTeacher^ removeteacher = gcnew RemoveTeacher();
+		removeteacher->ShowDialog();
+		this->Show();
 	}
-private: System::Void RemoveTeacherButton_Click(System::Object^ sender, System::EventArgs^ e) 
-{
-	this->Hide();
-	RemoveTeacher^ removeteacher = gcnew RemoveTeacher();
-	removeteacher->ShowDialog();
-	this->Show();
+	private: System::Void AddTeacherButton_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		AddTeacher^ addteacher = gcnew AddTeacher();
+		addteacher->ShowDialog();
+		this->Show();
+	}
+	private: System::Void DisplayTeacherButton_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		DisplayTeachers^ displayteachers = gcnew DisplayTeachers();
+		displayteachers->ShowDialog();
+		this->Show();
+	}
+	private: System::Void AddTimeSlotButton_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		AddTimeSlot^ addtimeslot = gcnew AddTimeSlot();
+		addtimeslot->ShowDialog();
+		this->Show();
+	}
+	private: System::Void ExitButton_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		Application::Exit();
+	}
 
-}
-private: System::Void AddTeacherButton_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	this->Hide();
-	AddTeacher^ addteacher = gcnew AddTeacher();
-	addteacher->ShowDialog();
-	this->Show();
-}
-private: System::Void DisplayButtonButton_Click(System::Object^ sender, System::EventArgs^ e) 
-{
-	this->Hide();
-	DisplayTeachers^ displayteachers = gcnew DisplayTeachers();
-	displayteachers->ShowDialog();
-	this->Show();
-}
-private: System::Void ExitButton_Click(System::Object^ sender, System::EventArgs^ e) 
-{
-	Application::Exit();
-}
-private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) 
-{
-	this->Hide();
-	AddTimeSlot^ addtimeslot = gcnew AddTimeSlot();
-	addtimeslot->ShowDialog();
-	this->Show();
-}
-};
-	  
+	};
+
 };
 

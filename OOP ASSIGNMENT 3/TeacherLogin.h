@@ -10,7 +10,7 @@ using namespace System::Data::SqlClient;
 
 namespace OOPASSIGNMENT2
 {
-	
+
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -48,14 +48,21 @@ namespace OOPASSIGNMENT2
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::Label^ HeaderLabel;
+	protected:
+
 	protected:
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ ok;
-	private: System::Windows::Forms::Button^ reset;
-	private: System::Windows::Forms::TextBox^ name;
-	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Button^ CloseButton;
+
+	private: System::Windows::Forms::Button^ ViewButton;
+	private: System::Windows::Forms::Button^ ClearButton;
+	private: System::Windows::Forms::TextBox^ ApplicationIDTEXTFIELD;
+
+
+
+	private: System::Windows::Forms::Label^ ApplicationIDLABEL;
+
 
 	private:
 		/// <summary>
@@ -71,28 +78,26 @@ namespace OOPASSIGNMENT2
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(TeacherLogin::typeid));
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->HeaderLabel = (gcnew System::Windows::Forms::Label());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->ok = (gcnew System::Windows::Forms::Button());
-			this->reset = (gcnew System::Windows::Forms::Button());
-			this->name = (gcnew System::Windows::Forms::TextBox());
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->CloseButton = (gcnew System::Windows::Forms::Button());
+			this->ViewButton = (gcnew System::Windows::Forms::Button());
+			this->ClearButton = (gcnew System::Windows::Forms::Button());
+			this->ApplicationIDTEXTFIELD = (gcnew System::Windows::Forms::TextBox());
+			this->ApplicationIDLABEL = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
-			// textBox1
+			// HeaderLabel
 			// 
-			this->textBox1->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
-			this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->HeaderLabel->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
+			this->HeaderLabel->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox1->Location = System::Drawing::Point(112, 199);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->ScrollBars = System::Windows::Forms::ScrollBars::Horizontal;
-			this->textBox1->Size = System::Drawing::Size(420, 28);
-			this->textBox1->TabIndex = 33;
-			this->textBox1->Text = L"      Time-table Managemnet System";
+			this->HeaderLabel->Location = System::Drawing::Point(112, 199);
+			this->HeaderLabel->Name = L"HeaderLabel";
+			this->HeaderLabel->Size = System::Drawing::Size(420, 28);
+			this->HeaderLabel->TabIndex = 33;
+			this->HeaderLabel->Text = L"      Time-table Managemnet System";
 			// 
 			// pictureBox1
 			// 
@@ -104,88 +109,87 @@ namespace OOPASSIGNMENT2
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 32;
 			this->pictureBox1->TabStop = false;
-			this->pictureBox1->Click += gcnew System::EventHandler(this, &TeacherLogin::pictureBox1_Click);
 			// 
-			// button1
+			// CloseButton
 			// 
-			this->button1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left)
+			this->CloseButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->button1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->CloseButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->Location = System::Drawing::Point(455, 413);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(196, 58);
-			this->button1->TabIndex = 31;
-			this->button1->Text = L"Back";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &TeacherLogin::button1_Click);
+			this->CloseButton->Location = System::Drawing::Point(455, 375);
+			this->CloseButton->Name = L"CloseButton";
+			this->CloseButton->Size = System::Drawing::Size(177, 58);
+			this->CloseButton->TabIndex = 31;
+			this->CloseButton->Text = L"Close";
+			this->CloseButton->UseVisualStyleBackColor = true;
+			this->CloseButton->Click += gcnew System::EventHandler(this, &TeacherLogin::CloseButton_Click);
 			// 
-			// ok
+			// ViewButton
 			// 
-			this->ok->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left)
+			this->ViewButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->ok->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->ViewButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->ok->Location = System::Drawing::Point(3, 414);
-			this->ok->Name = L"ok";
-			this->ok->Size = System::Drawing::Size(206, 58);
-			this->ok->TabIndex = 27;
-			this->ok->Text = L"Login";
-			this->ok->UseVisualStyleBackColor = true;
-			this->ok->Click += gcnew System::EventHandler(this, &TeacherLogin::ok_Click);
+			this->ViewButton->Location = System::Drawing::Point(3, 376);
+			this->ViewButton->Name = L"ViewButton";
+			this->ViewButton->Size = System::Drawing::Size(187, 58);
+			this->ViewButton->TabIndex = 27;
+			this->ViewButton->Text = L"View";
+			this->ViewButton->UseVisualStyleBackColor = true;
+			this->ViewButton->Click += gcnew System::EventHandler(this, &TeacherLogin::ViewButton_Click);
 			// 
-			// reset
+			// ClearButton
 			// 
-			this->reset->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left)
+			this->ClearButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->reset->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->ClearButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->reset->Location = System::Drawing::Point(228, 414);
-			this->reset->Name = L"reset";
-			this->reset->Size = System::Drawing::Size(208, 58);
-			this->reset->TabIndex = 29;
-			this->reset->Text = L"Reset";
-			this->reset->UseVisualStyleBackColor = true;
-			this->reset->Click += gcnew System::EventHandler(this, &TeacherLogin::reset_Click);
+			this->ClearButton->Location = System::Drawing::Point(228, 376);
+			this->ClearButton->Name = L"ClearButton";
+			this->ClearButton->Size = System::Drawing::Size(189, 58);
+			this->ClearButton->TabIndex = 29;
+			this->ClearButton->Text = L"Clear";
+			this->ClearButton->UseVisualStyleBackColor = true;
+			this->ClearButton->Click += gcnew System::EventHandler(this, &TeacherLogin::ClearButton_Click);
 			// 
-			// name
+			// ApplicationIDTEXTFIELD
 			// 
-			this->name->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+			this->ApplicationIDTEXTFIELD->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->name->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->ApplicationIDTEXTFIELD->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->name->Location = System::Drawing::Point(3, 295);
-			this->name->Name = L"name";
-			this->name->Size = System::Drawing::Size(648, 35);
-			this->name->TabIndex = 30;
+			this->ApplicationIDTEXTFIELD->Location = System::Drawing::Point(3, 295);
+			this->ApplicationIDTEXTFIELD->Name = L"ApplicationIDTEXTFIELD";
+			this->ApplicationIDTEXTFIELD->Size = System::Drawing::Size(629, 35);
+			this->ApplicationIDTEXTFIELD->TabIndex = 30;
 			// 
-			// label1
+			// ApplicationIDLABEL
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->ApplicationIDLABEL->AutoSize = true;
+			this->ApplicationIDLABEL->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(-2, 257);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(167, 27);
-			this->label1->TabIndex = 28;
-			this->label1->Text = L"Application ID :";
-			this->label1->TextAlign = System::Drawing::ContentAlignment::TopCenter;
+			this->ApplicationIDLABEL->Location = System::Drawing::Point(-2, 257);
+			this->ApplicationIDLABEL->Name = L"ApplicationIDLABEL";
+			this->ApplicationIDLABEL->Size = System::Drawing::Size(167, 27);
+			this->ApplicationIDLABEL->TabIndex = 28;
+			this->ApplicationIDLABEL->Text = L"Application ID :";
+			this->ApplicationIDLABEL->TextAlign = System::Drawing::ContentAlignment::TopCenter;
 			// 
 			// TeacherLogin
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
-			this->ClientSize = System::Drawing::Size(648, 475);
-			this->Controls->Add(this->textBox1);
+			this->ClientSize = System::Drawing::Size(629, 437);
+			this->Controls->Add(this->HeaderLabel);
 			this->Controls->Add(this->pictureBox1);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->ok);
-			this->Controls->Add(this->reset);
-			this->Controls->Add(this->name);
-			this->Controls->Add(this->label1);
+			this->Controls->Add(this->CloseButton);
+			this->Controls->Add(this->ViewButton);
+			this->Controls->Add(this->ClearButton);
+			this->Controls->Add(this->ApplicationIDTEXTFIELD);
+			this->Controls->Add(this->ApplicationIDLABEL);
 			this->Name = L"TeacherLogin";
-			this->Text = L"Teacher";
+			this->Text = L"Teacher Login";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -195,76 +199,61 @@ namespace OOPASSIGNMENT2
 #pragma endregion
 
 
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void CloseButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		Application::Exit();
-		
+
 	}
 
-	private: System::Void ok_Click(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void ViewButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		// Read the application ID provided by the user
-		String^ appId = name->Text->Trim();
+		String^ appId = ApplicationIDTEXTFIELD->Text->Trim();
 
-		// Check if the application ID is empty
 		if (String::IsNullOrEmpty(appId))
 		{
-			MessageBox::Show("Please enter an application ID.");
+			MessageBox::Show("Please Enter AN application ID.");
 			return;
 		}
 
-		// Define the connection string (adjust it to your database settings)
 		String^ connectionString = "Data Source=DESKTOP-MN4CFP4;Initial Catalog=TIMETABLEDB;Integrated Security=True";
 
-		// Define the query to check for the application ID
 		String^ query = "SELECT Name FROM Teachers WHERE ApplicationID = @ApplicationID";
 
-		// Create a connection and command
 		SqlConnection^ connection = gcnew SqlConnection(connectionString);
 		SqlCommand^ command = gcnew SqlCommand(query, connection);
 		command->Parameters->AddWithValue("@ApplicationID", appId);
 
 		try
 		{
-			// Open the connection
 			connection->Open();
-
-			// Execute the query
 			SqlDataReader^ reader = command->ExecuteReader();
 
-			// Check if the application ID was found
 			if (reader->Read())
 			{
 				String^ teacherName = reader["Name"]->ToString();
-
-				// If found, hide the current form and open the new form
 				this->Hide();
 				TeacherTimeTableForm^ form = gcnew TeacherTimeTableForm(teacherName, appId);
 				form->Show();
 			}
 			else
 			{
-				// If the application ID was not found, display an error message
-				MessageBox::Show("Invalid application ID.");
+				MessageBox::Show("Application ID Not Found.");
 			}
-
-			// Close the reader and connection
 			reader->Close();
 			connection->Close();
 		}
 		catch (Exception^ ex)
 		{
-			// Handle any errors that occurred during the connection or query
 			MessageBox::Show("Error: " + ex->Message);
 		}
 	}
-
-
-		   // Event handler for Reset button click
-		private: System::Void reset_Click(System::Object^ sender, System::EventArgs^ e) {
-			name->Text = "";
-		}
-	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
+		   void ClearTextBoxes()
+		   {
+			   ApplicationIDTEXTFIELD->Text = "";
+		   }
+	private: System::Void ClearButton_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		ClearTextBoxes();
 	}
-};
+	};
 }
