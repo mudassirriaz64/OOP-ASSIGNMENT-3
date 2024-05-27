@@ -129,8 +129,10 @@
     <ClCompile Include="MainMenuForm.cpp" />
     <ClCompile Include="RemoveStudentForm.cpp" />
     <ClCompile Include="RemoveTeacher.cpp" />
+    <ClCompile Include="RemoveTimeSlot.cpp" />
     <ClCompile Include="RoomLogin.cpp" />
     <ClCompile Include="RoomTimeTable.cpp" />
+    <ClCompile Include="SearchTimeSlot.cpp" />
     <ClCompile Include="SectionLogin.cpp" />
     <ClCompile Include="SectionTimeTable.cpp" />
     <ClCompile Include="StudentLogin.cpp" />
@@ -163,10 +165,16 @@
     <ClInclude Include="RemoveTeacher.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="RemoveTimeSlot.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="RoomLogin.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="RoomTimeTable.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="SearchTimeSlot.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="SectionLogin.h">
@@ -207,11 +215,17 @@
     <EmbeddedResource Include="RemoveTeacher.resx">
       <DependentUpon>RemoveTeacher.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RemoveTimeSlot.resx">
+      <DependentUpon>RemoveTimeSlot.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RoomLogin.resx">
       <DependentUpon>RoomLogin.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RoomTimeTable.resx">
       <DependentUpon>RoomTimeTable.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchTimeSlot.resx">
+      <DependentUpon>SearchTimeSlot.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SectionLogin.resx">
       <DependentUpon>SectionLogin.h</DependentUpon>

@@ -75,9 +75,9 @@ namespace OOPASSIGNMENT2
 			// 
 			this->RemoveButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->RemoveButton->Location = System::Drawing::Point(12, 360);
+			this->RemoveButton->Location = System::Drawing::Point(12, 343);
 			this->RemoveButton->Name = L"RemoveButton";
-			this->RemoveButton->Size = System::Drawing::Size(157, 38);
+			this->RemoveButton->Size = System::Drawing::Size(157, 55);
 			this->RemoveButton->TabIndex = 1;
 			this->RemoveButton->Text = L"Remove";
 			this->RemoveButton->UseVisualStyleBackColor = true;
@@ -87,11 +87,11 @@ namespace OOPASSIGNMENT2
 			// 
 			this->CloseButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->CloseButton->Location = System::Drawing::Point(437, 360);
+			this->CloseButton->Location = System::Drawing::Point(437, 343);
 			this->CloseButton->Name = L"CloseButton";
-			this->CloseButton->Size = System::Drawing::Size(135, 38);
+			this->CloseButton->Size = System::Drawing::Size(135, 55);
 			this->CloseButton->TabIndex = 2;
-			this->CloseButton->Text = L"Cancel";
+			this->CloseButton->Text = L"Close";
 			this->CloseButton->UseVisualStyleBackColor = true;
 			this->CloseButton->Click += gcnew System::EventHandler(this, &RemoveTeacher::CloseButton_Click);
 			// 
@@ -99,9 +99,9 @@ namespace OOPASSIGNMENT2
 			// 
 			this->ClearButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->ClearButton->Location = System::Drawing::Point(217, 361);
+			this->ClearButton->Location = System::Drawing::Point(217, 343);
 			this->ClearButton->Name = L"ClearButton";
-			this->ClearButton->Size = System::Drawing::Size(168, 37);
+			this->ClearButton->Size = System::Drawing::Size(168, 55);
 			this->ClearButton->TabIndex = 4;
 			this->ClearButton->Text = L"Clear";
 			this->ClearButton->UseVisualStyleBackColor = true;

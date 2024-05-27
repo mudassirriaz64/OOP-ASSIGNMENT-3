@@ -63,6 +63,12 @@
     <ClInclude Include="AddTimeSlot.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RemoveTimeSlot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SearchTimeSlot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainMenuForm.cpp">
@@ -111,6 +117,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AddTimeSlot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RemoveTimeSlot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SearchTimeSlot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

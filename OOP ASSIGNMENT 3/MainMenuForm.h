@@ -9,7 +9,9 @@
 #include "RemoveTeacher.h"
 #include "AddTeacher.h"
 #include "AddTimeSlot.h"
+#include "RemoveTimeSlot.h"
 #include "DisplayTeachers.h"
+#include "SearchTimeSlot.h"
 
 #pragma once
 
@@ -74,6 +76,9 @@ namespace OOPASSIGNMENT2
 
 	private: System::Windows::Forms::Button^ ExitButton;
 	private: System::Windows::Forms::Button^ AddTimeSlotButton;
+	private: System::Windows::Forms::Button^ RemoveTimeSlotButton;
+	private: System::Windows::Forms::Button^ SearchTimeSlotButton;
+
 
 
 
@@ -108,6 +113,8 @@ namespace OOPASSIGNMENT2
 			this->DisplayTeacherButton = (gcnew System::Windows::Forms::Button());
 			this->ExitButton = (gcnew System::Windows::Forms::Button());
 			this->AddTimeSlotButton = (gcnew System::Windows::Forms::Button());
+			this->RemoveTimeSlotButton = (gcnew System::Windows::Forms::Button());
+			this->SearchTimeSlotButton = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -126,7 +133,7 @@ namespace OOPASSIGNMENT2
 			// 
 			this->DisplayStudentButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->DisplayStudentButton->Location = System::Drawing::Point(417, 406);
+			this->DisplayStudentButton->Location = System::Drawing::Point(417, 395);
 			this->DisplayStudentButton->Name = L"DisplayStudentButton";
 			this->DisplayStudentButton->Size = System::Drawing::Size(308, 38);
 			this->DisplayStudentButton->TabIndex = 30;
@@ -138,7 +145,7 @@ namespace OOPASSIGNMENT2
 			// 
 			this->RemoveStudentButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->RemoveStudentButton->Location = System::Drawing::Point(417, 495);
+			this->RemoveStudentButton->Location = System::Drawing::Point(417, 484);
 			this->RemoveStudentButton->Name = L"RemoveStudentButton";
 			this->RemoveStudentButton->Size = System::Drawing::Size(308, 39);
 			this->RemoveStudentButton->TabIndex = 29;
@@ -150,7 +157,7 @@ namespace OOPASSIGNMENT2
 			// 
 			this->AddStudentButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->AddStudentButton->Location = System::Drawing::Point(417, 450);
+			this->AddStudentButton->Location = System::Drawing::Point(417, 439);
 			this->AddStudentButton->Name = L"AddStudentButton";
 			this->AddStudentButton->Size = System::Drawing::Size(308, 39);
 			this->AddStudentButton->TabIndex = 28;
@@ -162,7 +169,7 @@ namespace OOPASSIGNMENT2
 			// 
 			this->RoomTimeTableButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->RoomTimeTableButton->Location = System::Drawing::Point(417, 361);
+			this->RoomTimeTableButton->Location = System::Drawing::Point(417, 350);
 			this->RoomTimeTableButton->Name = L"RoomTimeTableButton";
 			this->RoomTimeTableButton->Size = System::Drawing::Size(308, 39);
 			this->RoomTimeTableButton->TabIndex = 27;
@@ -174,7 +181,7 @@ namespace OOPASSIGNMENT2
 			// 
 			this->SectionTimeTableButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->SectionTimeTableButton->Location = System::Drawing::Point(47, 361);
+			this->SectionTimeTableButton->Location = System::Drawing::Point(47, 350);
 			this->SectionTimeTableButton->Name = L"SectionTimeTableButton";
 			this->SectionTimeTableButton->Size = System::Drawing::Size(308, 39);
 			this->SectionTimeTableButton->TabIndex = 26;
@@ -186,7 +193,7 @@ namespace OOPASSIGNMENT2
 			// 
 			this->StudentTimeTableButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->StudentTimeTableButton->Location = System::Drawing::Point(417, 316);
+			this->StudentTimeTableButton->Location = System::Drawing::Point(417, 305);
 			this->StudentTimeTableButton->Name = L"StudentTimeTableButton";
 			this->StudentTimeTableButton->Size = System::Drawing::Size(308, 39);
 			this->StudentTimeTableButton->TabIndex = 25;
@@ -198,7 +205,7 @@ namespace OOPASSIGNMENT2
 			// 
 			this->TeacherTimeTableButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->TeacherTimeTableButton->Location = System::Drawing::Point(47, 316);
+			this->TeacherTimeTableButton->Location = System::Drawing::Point(47, 305);
 			this->TeacherTimeTableButton->Name = L"TeacherTimeTableButton";
 			this->TeacherTimeTableButton->Size = System::Drawing::Size(308, 39);
 			this->TeacherTimeTableButton->TabIndex = 24;
@@ -221,7 +228,7 @@ namespace OOPASSIGNMENT2
 			// 
 			this->AddTeacherButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->AddTeacherButton->Location = System::Drawing::Point(47, 450);
+			this->AddTeacherButton->Location = System::Drawing::Point(47, 439);
 			this->AddTeacherButton->Name = L"AddTeacherButton";
 			this->AddTeacherButton->Size = System::Drawing::Size(308, 39);
 			this->AddTeacherButton->TabIndex = 32;
@@ -233,7 +240,7 @@ namespace OOPASSIGNMENT2
 			// 
 			this->RemoveTeacherButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->RemoveTeacherButton->Location = System::Drawing::Point(47, 495);
+			this->RemoveTeacherButton->Location = System::Drawing::Point(47, 484);
 			this->RemoveTeacherButton->Name = L"RemoveTeacherButton";
 			this->RemoveTeacherButton->Size = System::Drawing::Size(308, 39);
 			this->RemoveTeacherButton->TabIndex = 33;
@@ -245,7 +252,7 @@ namespace OOPASSIGNMENT2
 			// 
 			this->DisplayTeacherButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->DisplayTeacherButton->Location = System::Drawing::Point(47, 406);
+			this->DisplayTeacherButton->Location = System::Drawing::Point(47, 395);
 			this->DisplayTeacherButton->Name = L"DisplayTeacherButton";
 			this->DisplayTeacherButton->Size = System::Drawing::Size(308, 38);
 			this->DisplayTeacherButton->TabIndex = 34;
@@ -257,7 +264,7 @@ namespace OOPASSIGNMENT2
 			// 
 			this->ExitButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->ExitButton->Location = System::Drawing::Point(417, 540);
+			this->ExitButton->Location = System::Drawing::Point(417, 573);
 			this->ExitButton->Name = L"ExitButton";
 			this->ExitButton->Size = System::Drawing::Size(308, 38);
 			this->ExitButton->TabIndex = 35;
@@ -269,7 +276,7 @@ namespace OOPASSIGNMENT2
 			// 
 			this->AddTimeSlotButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->AddTimeSlotButton->Location = System::Drawing::Point(47, 540);
+			this->AddTimeSlotButton->Location = System::Drawing::Point(47, 529);
 			this->AddTimeSlotButton->Name = L"AddTimeSlotButton";
 			this->AddTimeSlotButton->Size = System::Drawing::Size(308, 38);
 			this->AddTimeSlotButton->TabIndex = 36;
@@ -277,12 +284,38 @@ namespace OOPASSIGNMENT2
 			this->AddTimeSlotButton->UseVisualStyleBackColor = true;
 			this->AddTimeSlotButton->Click += gcnew System::EventHandler(this, &MainMenuForm::AddTimeSlotButton_Click);
 			// 
+			// RemoveTimeSlotButton
+			// 
+			this->RemoveTimeSlotButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->RemoveTimeSlotButton->Location = System::Drawing::Point(417, 529);
+			this->RemoveTimeSlotButton->Name = L"RemoveTimeSlotButton";
+			this->RemoveTimeSlotButton->Size = System::Drawing::Size(308, 38);
+			this->RemoveTimeSlotButton->TabIndex = 37;
+			this->RemoveTimeSlotButton->Text = L"Remove TimeSlot";
+			this->RemoveTimeSlotButton->UseVisualStyleBackColor = true;
+			this->RemoveTimeSlotButton->Click += gcnew System::EventHandler(this, &MainMenuForm::RemoveTimeSlotButton_Click);
+			// 
+			// SearchTimeSlotButton
+			// 
+			this->SearchTimeSlotButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->SearchTimeSlotButton->Location = System::Drawing::Point(47, 573);
+			this->SearchTimeSlotButton->Name = L"SearchTimeSlotButton";
+			this->SearchTimeSlotButton->Size = System::Drawing::Size(308, 38);
+			this->SearchTimeSlotButton->TabIndex = 38;
+			this->SearchTimeSlotButton->Text = L"Search TimeSlot";
+			this->SearchTimeSlotButton->UseVisualStyleBackColor = true;
+			this->SearchTimeSlotButton->Click += gcnew System::EventHandler(this, &MainMenuForm::SearchTimeSlotButton_Click);
+			// 
 			// MainMenuForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->ClientSize = System::Drawing::Size(802, 622);
+			this->Controls->Add(this->SearchTimeSlotButton);
+			this->Controls->Add(this->RemoveTimeSlotButton);
 			this->Controls->Add(this->AddTimeSlotButton);
 			this->Controls->Add(this->ExitButton);
 			this->Controls->Add(this->DisplayTeacherButton);
@@ -298,6 +331,7 @@ namespace OOPASSIGNMENT2
 			this->Controls->Add(this->TeacherTimeTableButton);
 			this->Controls->Add(this->pictureBox1);
 			this->Name = L"MainMenuForm";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Time Table Management System";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
@@ -308,8 +342,6 @@ namespace OOPASSIGNMENT2
 	{
 		TeacherLogin^ teacher = gcnew TeacherLogin();
 		teacher->ShowDialog();
-		this->Hide();
-		this->Show();
 	}
 	private: System::Void StudentTimeTableButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
@@ -374,7 +406,19 @@ namespace OOPASSIGNMENT2
 		Application::Exit();
 	}
 
-	};
+	private: System::Void RemoveTimeSlotButton_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		RemoveTimeSlot^ removetimeslot = gcnew RemoveTimeSlot();
+		removetimeslot->ShowDialog();
+		this->Show();
+	}
+private: System::Void SearchTimeSlotButton_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	SearchTimeSlot^ searchtimeslot = gcnew SearchTimeSlot();
+	searchtimeslot->ShowDialog();
+	this->Show();
+}
+};
 
 };
 

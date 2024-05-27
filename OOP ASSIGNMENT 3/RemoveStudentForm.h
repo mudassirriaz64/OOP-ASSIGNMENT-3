@@ -79,9 +79,9 @@ namespace OOPASSIGNMENT2
 			// 
 			this->RemoveButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->RemoveButton->Location = System::Drawing::Point(12, 360);
+			this->RemoveButton->Location = System::Drawing::Point(12, 337);
 			this->RemoveButton->Name = L"RemoveButton";
-			this->RemoveButton->Size = System::Drawing::Size(135, 38);
+			this->RemoveButton->Size = System::Drawing::Size(135, 61);
 			this->RemoveButton->TabIndex = 1;
 			this->RemoveButton->Text = L"Remove";
 			this->RemoveButton->UseVisualStyleBackColor = true;
@@ -91,9 +91,9 @@ namespace OOPASSIGNMENT2
 			// 
 			this->CancelButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->CancelButton->Location = System::Drawing::Point(424, 360);
+			this->CancelButton->Location = System::Drawing::Point(424, 337);
 			this->CancelButton->Name = L"CancelButton";
-			this->CancelButton->Size = System::Drawing::Size(149, 38);
+			this->CancelButton->Size = System::Drawing::Size(149, 61);
 			this->CancelButton->TabIndex = 2;
 			this->CancelButton->Text = L"Close";
 			this->CancelButton->UseVisualStyleBackColor = true;
@@ -102,9 +102,9 @@ namespace OOPASSIGNMENT2
 			// 
 			this->ClearButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->ClearButton->Location = System::Drawing::Point(195, 360);
+			this->ClearButton->Location = System::Drawing::Point(195, 337);
 			this->ClearButton->Name = L"ClearButton";
-			this->ClearButton->Size = System::Drawing::Size(158, 37);
+			this->ClearButton->Size = System::Drawing::Size(158, 60);
 			this->ClearButton->TabIndex = 4;
 			this->ClearButton->Text = L"Clear";
 			this->ClearButton->UseVisualStyleBackColor = true;
@@ -191,7 +191,7 @@ namespace OOPASSIGNMENT2
 	}
 
 
-	private: System::Void cancelButton_Click(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void CancelButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		this->Close();
 	}
