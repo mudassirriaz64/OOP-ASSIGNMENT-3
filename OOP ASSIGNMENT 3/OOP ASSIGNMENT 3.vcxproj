@@ -123,13 +123,14 @@
   <ItemGroup>
     <ClCompile Include="AddStudentForm.cpp" />
     <ClCompile Include="AddTeacher.cpp" />
-    <ClCompile Include="AddTimeSlot.cpp" />
+    <ClCompile Include="AdminDashBoard.cpp" />
+    <ClCompile Include="AdminLogin.cpp" />
     <ClCompile Include="DisplayStudents.cpp" />
     <ClCompile Include="DisplayTeachers.cpp" />
     <ClCompile Include="MainMenuForm.cpp" />
+    <ClCompile Include="ManageTimeSlots.cpp" />
     <ClCompile Include="RemoveStudentForm.cpp" />
     <ClCompile Include="RemoveTeacher.cpp" />
-    <ClCompile Include="RemoveTimeSlot.cpp" />
     <ClCompile Include="RoomLogin.cpp" />
     <ClCompile Include="RoomTimeTable.cpp" />
     <ClCompile Include="SearchTimeSlot.cpp" />
@@ -147,7 +148,10 @@
     <ClInclude Include="AddTeacher.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="AddTimeSlot.h">
+    <ClInclude Include="AdminDashBoard.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="AdminLogin.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="DisplayStudents.h">
@@ -159,13 +163,13 @@
     <ClInclude Include="MainMenuForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="ManageTimeSlots.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="RemoveStudentForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="RemoveTeacher.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
-    <ClInclude Include="RemoveTimeSlot.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="RoomLogin.h">
@@ -203,20 +207,23 @@
     <EmbeddedResource Include="AddTeacher.resx">
       <DependentUpon>AddTeacher.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddTimeSlot.resx">
-      <DependentUpon>AddTimeSlot.h</DependentUpon>
+    <EmbeddedResource Include="AdminDashBoard.resx">
+      <DependentUpon>AdminDashBoard.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminLogin.resx">
+      <DependentUpon>AdminLogin.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenuForm.resx">
       <DependentUpon>MainMenuForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageTimeSlots.resx">
+      <DependentUpon>ManageTimeSlots.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RemoveStudentForm.resx">
       <DependentUpon>RemoveStudentForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RemoveTeacher.resx">
       <DependentUpon>RemoveTeacher.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RemoveTimeSlot.resx">
-      <DependentUpon>RemoveTimeSlot.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RoomLogin.resx">
       <DependentUpon>RoomLogin.h</DependentUpon>
@@ -229,6 +236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SectionLogin.resx">
       <DependentUpon>SectionLogin.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SectionTimeTable.resx">
+      <DependentUpon>SectionTimeTable.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StudentLogin.resx">
       <DependentUpon>StudentLogin.h</DependentUpon>

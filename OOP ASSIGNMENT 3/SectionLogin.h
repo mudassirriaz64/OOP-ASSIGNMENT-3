@@ -81,7 +81,6 @@ namespace OOPASSIGNMENT2
 			// TimeTableLabel
 			// 
 			this->TimeTableLabel->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
-			this->TimeTableLabel->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->TimeTableLabel->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->TimeTableLabel->Location = System::Drawing::Point(103, 220);
@@ -175,6 +174,7 @@ namespace OOPASSIGNMENT2
 			this->Controls->Add(this->SectionIDTEXTFIELD);
 			this->Controls->Add(this->SectionIDLabel);
 			this->Name = L"SectionLogin";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Section Login";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
@@ -218,7 +218,8 @@ namespace OOPASSIGNMENT2
 			sectionExists = (count > 0);
 			con->Close();
 		}
-		catch (Exception^ ex) {
+		catch (Exception^ ex) 
+		{
 			MessageBox::Show("An error occurred: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			if (con->State == ConnectionState::Open) {
 				con->Close();

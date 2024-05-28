@@ -1,6 +1,7 @@
 #pragma once
 
-namespace OOPASSIGNMENT2 {
+namespace OOPASSIGNMENT2
+{
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -13,22 +14,20 @@ namespace OOPASSIGNMENT2 {
 	/// <summary>
 	/// Summary for AddTimeSlot
 	/// </summary>
-	public ref class AddTimeSlot : public System::Windows::Forms::Form
+	public ref class ManageTimeSlots : public System::Windows::Forms::Form
 	{
 	public:
-		AddTimeSlot(void)
+		ManageTimeSlots(void)
 		{
 			InitializeComponent();
-			void ClearTextBoxes();
-			bool CheckForClashes(String ^ day, String ^ startTime, String ^ endTime, String ^ section, String ^ courseName, String ^ teacherName, int roomId);
-			bool AddTimeSlotToDatabase(String ^ day, String ^ startTime, String ^ endTime, String ^ section, String ^ courseName, String ^ teacherName, int roomId);
+			InitializeDataGridView();
 		}
 
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~AddTimeSlot()
+		~ManageTimeSlots()
 		{
 			if (components)
 			{
@@ -38,9 +37,12 @@ namespace OOPASSIGNMENT2 {
 	private: System::Windows::Forms::TextBox^ StartTimeTextBox;
 	private: System::Windows::Forms::Label^ StartTimeLabel;
 	private: System::Windows::Forms::Label^ AddTimeSlotLabel;
+
+
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
-	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Button^ AddButton;
+
+
 	private: System::Windows::Forms::Button^ ClearButton;
 	private: System::Windows::Forms::TextBox^ DayTextBox;
 	private: System::Windows::Forms::Label^ DayLabel;
@@ -48,15 +50,38 @@ namespace OOPASSIGNMENT2 {
 	private: System::Windows::Forms::TextBox^ EndTimeTextBox;
 	private: System::Windows::Forms::TextBox^ RoomIDTextBox;
 	private: System::Windows::Forms::TextBox^ CourseNameTextBox;
-	private: System::Windows::Forms::TextBox^ SectionTextBox;
+
 	private: System::Windows::Forms::TextBox^ TeacherNameTextBox;
-	private: System::Windows::Forms::Label^ SectionLabel;
+
 	private: System::Windows::Forms::Label^ TeacherNameLabel;
 	private: System::Windows::Forms::Label^ CourseNameLabel;
 	private: System::Windows::Forms::Label^ RoomLabel;
 	private: System::Windows::Forms::TextBox^ TeacherIDTextBox;
 	private: System::Windows::Forms::Label^ TeacherIDLabel;
 	private: System::Windows::Forms::Button^ CloseButton;
+	private: System::Windows::Forms::Button^ RemoveButton;
+
+
+
+
+
+
+
+	private: System::Windows::Forms::TextBox^ SectionIDTextBox;
+	private: System::Windows::Forms::Label^ SectionIDLabel;
+	private: System::Windows::Forms::Button^ ShowTimeSlotsButton;
+	private: System::Windows::Forms::DataGridView^ dataGridView;
+	private: System::Windows::Forms::Button^ EditButton;
+
+
+
+
+
+
+
+
+
+
 
 	private:
 		/// <summary>
@@ -69,15 +94,34 @@ namespace OOPASSIGNMENT2 {
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
+		/// 
+		void InitializeDataGridView()
+		{
+			dataGridView->Rows->Clear();
+			dataGridView->Columns->Clear();
+
+			dataGridView->AutoGenerateColumns = false;
+
+			dataGridView->Columns->Add("Day", "Day");
+			dataGridView->Columns->Add("StartTime", "Start Time");
+			dataGridView->Columns->Add("EndTime", "End Time");
+			dataGridView->Columns->Add("CourseName", "Course Name");
+			dataGridView->Columns->Add("TeacherName", "Teacher Name");
+			dataGridView->Columns->Add("TeacherID", "Teacher ID");
+			dataGridView->Columns->Add("Room", "Room");
+
+		}
+
+
+
+
 		void InitializeComponent(void)
 		{
-			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(AddTimeSlot::typeid));
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(ManageTimeSlots::typeid));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->AddTimeSlotLabel = (gcnew System::Windows::Forms::Label());
 			this->DayLabel = (gcnew System::Windows::Forms::Label());
 			this->DayTextBox = (gcnew System::Windows::Forms::TextBox());
-			this->SectionLabel = (gcnew System::Windows::Forms::Label());
-			this->SectionTextBox = (gcnew System::Windows::Forms::TextBox());
 			this->StartTimeTextBox = (gcnew System::Windows::Forms::TextBox());
 			this->StartTimeLabel = (gcnew System::Windows::Forms::Label());
 			this->EndTimeLabel = (gcnew System::Windows::Forms::Label());
@@ -93,16 +137,23 @@ namespace OOPASSIGNMENT2 {
 			this->AddButton = (gcnew System::Windows::Forms::Button());
 			this->ClearButton = (gcnew System::Windows::Forms::Button());
 			this->CloseButton = (gcnew System::Windows::Forms::Button());
+			this->RemoveButton = (gcnew System::Windows::Forms::Button());
+			this->SectionIDTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->SectionIDLabel = (gcnew System::Windows::Forms::Label());
+			this->ShowTimeSlotsButton = (gcnew System::Windows::Forms::Button());
+			this->dataGridView = (gcnew System::Windows::Forms::DataGridView());
+			this->EditButton = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->pictureBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(293, 21);
+			this->pictureBox1->Location = System::Drawing::Point(12, 12);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(354, 191);
+			this->pictureBox1->Size = System::Drawing::Size(178, 106);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 55;
 			this->pictureBox1->TabStop = false;
@@ -112,19 +163,18 @@ namespace OOPASSIGNMENT2 {
 			this->AddTimeSlotLabel->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
 			this->AddTimeSlotLabel->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->AddTimeSlotLabel->Location = System::Drawing::Point(268, 215);
+			this->AddTimeSlotLabel->Location = System::Drawing::Point(7, 467);
 			this->AddTimeSlotLabel->Name = L"AddTimeSlotLabel";
 			this->AddTimeSlotLabel->Size = System::Drawing::Size(360, 28);
 			this->AddTimeSlotLabel->TabIndex = 56;
-			this->AddTimeSlotLabel->Text = L"     Add TimeSlot";
-			this->AddTimeSlotLabel->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			this->AddTimeSlotLabel->Text = L"TimeSlot :";
 			// 
 			// DayLabel
 			// 
 			this->DayLabel->AutoSize = true;
 			this->DayLabel->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->DayLabel->Location = System::Drawing::Point(23, 262);
+			this->DayLabel->Location = System::Drawing::Point(23, 505);
 			this->DayLabel->Name = L"DayLabel";
 			this->DayLabel->Size = System::Drawing::Size(123, 27);
 			this->DayLabel->TabIndex = 51;
@@ -135,40 +185,18 @@ namespace OOPASSIGNMENT2 {
 			// 
 			this->DayTextBox->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->DayTextBox->Location = System::Drawing::Point(28, 292);
+			this->DayTextBox->Location = System::Drawing::Point(28, 548);
 			this->DayTextBox->Name = L"DayTextBox";
-			this->DayTextBox->Size = System::Drawing::Size(382, 35);
+			this->DayTextBox->Size = System::Drawing::Size(209, 35);
 			this->DayTextBox->TabIndex = 53;
-			// 
-			// SectionLabel
-			// 
-			this->SectionLabel->AutoSize = true;
-			this->SectionLabel->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->SectionLabel->Location = System::Drawing::Point(515, 262);
-			this->SectionLabel->Name = L"SectionLabel";
-			this->SectionLabel->Size = System::Drawing::Size(154, 27);
-			this->SectionLabel->TabIndex = 73;
-			this->SectionLabel->Text = L"Enter Section :";
-			this->SectionLabel->TextAlign = System::Drawing::ContentAlignment::TopCenter;
-			// 
-			// SectionTextBox
-			// 
-			this->SectionTextBox->AccessibleName = L"";
-			this->SectionTextBox->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->SectionTextBox->Location = System::Drawing::Point(514, 292);
-			this->SectionTextBox->Name = L"SectionTextBox";
-			this->SectionTextBox->Size = System::Drawing::Size(382, 35);
-			this->SectionTextBox->TabIndex = 75;
 			// 
 			// StartTimeTextBox
 			// 
 			this->StartTimeTextBox->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->StartTimeTextBox->Location = System::Drawing::Point(28, 375);
+			this->StartTimeTextBox->Location = System::Drawing::Point(300, 548);
 			this->StartTimeTextBox->Name = L"StartTimeTextBox";
-			this->StartTimeTextBox->Size = System::Drawing::Size(382, 35);
+			this->StartTimeTextBox->Size = System::Drawing::Size(211, 35);
 			this->StartTimeTextBox->TabIndex = 58;
 			// 
 			// StartTimeLabel
@@ -176,7 +204,7 @@ namespace OOPASSIGNMENT2 {
 			this->StartTimeLabel->AutoSize = true;
 			this->StartTimeLabel->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->StartTimeLabel->Location = System::Drawing::Point(23, 345);
+			this->StartTimeLabel->Location = System::Drawing::Point(295, 505);
 			this->StartTimeLabel->Name = L"StartTimeLabel";
 			this->StartTimeLabel->Size = System::Drawing::Size(176, 27);
 			this->StartTimeLabel->TabIndex = 57;
@@ -188,7 +216,7 @@ namespace OOPASSIGNMENT2 {
 			this->EndTimeLabel->AutoSize = true;
 			this->EndTimeLabel->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->EndTimeLabel->Location = System::Drawing::Point(515, 345);
+			this->EndTimeLabel->Location = System::Drawing::Point(552, 505);
 			this->EndTimeLabel->Name = L"EndTimeLabel";
 			this->EndTimeLabel->Size = System::Drawing::Size(176, 27);
 			this->EndTimeLabel->TabIndex = 64;
@@ -199,9 +227,9 @@ namespace OOPASSIGNMENT2 {
 			// 
 			this->EndTimeTextBox->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->EndTimeTextBox->Location = System::Drawing::Point(514, 375);
+			this->EndTimeTextBox->Location = System::Drawing::Point(557, 548);
 			this->EndTimeTextBox->Name = L"EndTimeTextBox";
-			this->EndTimeTextBox->Size = System::Drawing::Size(382, 35);
+			this->EndTimeTextBox->Size = System::Drawing::Size(216, 35);
 			this->EndTimeTextBox->TabIndex = 65;
 			// 
 			// TeacherNameLabel
@@ -209,7 +237,7 @@ namespace OOPASSIGNMENT2 {
 			this->TeacherNameLabel->AutoSize = true;
 			this->TeacherNameLabel->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->TeacherNameLabel->Location = System::Drawing::Point(23, 427);
+			this->TeacherNameLabel->Location = System::Drawing::Point(23, 597);
 			this->TeacherNameLabel->Name = L"TeacherNameLabel";
 			this->TeacherNameLabel->Size = System::Drawing::Size(222, 27);
 			this->TeacherNameLabel->TabIndex = 72;
@@ -220,7 +248,7 @@ namespace OOPASSIGNMENT2 {
 			// 
 			this->TeacherNameTextBox->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->TeacherNameTextBox->Location = System::Drawing::Point(28, 457);
+			this->TeacherNameTextBox->Location = System::Drawing::Point(28, 632);
 			this->TeacherNameTextBox->Name = L"TeacherNameTextBox";
 			this->TeacherNameTextBox->Size = System::Drawing::Size(382, 35);
 			this->TeacherNameTextBox->TabIndex = 74;
@@ -230,7 +258,7 @@ namespace OOPASSIGNMENT2 {
 			this->TeacherIDLabel->AutoSize = true;
 			this->TeacherIDLabel->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->TeacherIDLabel->Location = System::Drawing::Point(509, 427);
+			this->TeacherIDLabel->Location = System::Drawing::Point(484, 597);
 			this->TeacherIDLabel->Name = L"TeacherIDLabel";
 			this->TeacherIDLabel->Size = System::Drawing::Size(190, 27);
 			this->TeacherIDLabel->TabIndex = 79;
@@ -241,9 +269,9 @@ namespace OOPASSIGNMENT2 {
 			// 
 			this->TeacherIDTextBox->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->TeacherIDTextBox->Location = System::Drawing::Point(514, 457);
+			this->TeacherIDTextBox->Location = System::Drawing::Point(489, 632);
 			this->TeacherIDTextBox->Name = L"TeacherIDTextBox";
-			this->TeacherIDTextBox->Size = System::Drawing::Size(382, 35);
+			this->TeacherIDTextBox->Size = System::Drawing::Size(239, 35);
 			this->TeacherIDTextBox->TabIndex = 78;
 			// 
 			// CourseNameLabel
@@ -251,7 +279,7 @@ namespace OOPASSIGNMENT2 {
 			this->CourseNameLabel->AutoSize = true;
 			this->CourseNameLabel->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->CourseNameLabel->Location = System::Drawing::Point(23, 508);
+			this->CourseNameLabel->Location = System::Drawing::Point(828, 505);
 			this->CourseNameLabel->Name = L"CourseNameLabel";
 			this->CourseNameLabel->Size = System::Drawing::Size(214, 27);
 			this->CourseNameLabel->TabIndex = 71;
@@ -262,7 +290,7 @@ namespace OOPASSIGNMENT2 {
 			// 
 			this->CourseNameTextBox->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->CourseNameTextBox->Location = System::Drawing::Point(28, 538);
+			this->CourseNameTextBox->Location = System::Drawing::Point(833, 548);
 			this->CourseNameTextBox->Name = L"CourseNameTextBox";
 			this->CourseNameTextBox->Size = System::Drawing::Size(382, 35);
 			this->CourseNameTextBox->TabIndex = 76;
@@ -272,7 +300,7 @@ namespace OOPASSIGNMENT2 {
 			this->RoomLabel->AutoSize = true;
 			this->RoomLabel->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->RoomLabel->Location = System::Drawing::Point(515, 508);
+			this->RoomLabel->Location = System::Drawing::Point(828, 597);
 			this->RoomLabel->Name = L"RoomLabel";
 			this->RoomLabel->Size = System::Drawing::Size(141, 27);
 			this->RoomLabel->TabIndex = 70;
@@ -283,9 +311,9 @@ namespace OOPASSIGNMENT2 {
 			// 
 			this->RoomIDTextBox->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->RoomIDTextBox->Location = System::Drawing::Point(514, 538);
+			this->RoomIDTextBox->Location = System::Drawing::Point(833, 632);
 			this->RoomIDTextBox->Name = L"RoomIDTextBox";
-			this->RoomIDTextBox->Size = System::Drawing::Size(382, 35);
+			this->RoomIDTextBox->Size = System::Drawing::Size(293, 35);
 			this->RoomIDTextBox->TabIndex = 77;
 			// 
 			// AddButton
@@ -293,54 +321,129 @@ namespace OOPASSIGNMENT2 {
 			this->AddButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
 			this->AddButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->AddButton->Location = System::Drawing::Point(28, 609);
+			this->AddButton->Location = System::Drawing::Point(348, 690);
 			this->AddButton->Name = L"AddButton";
 			this->AddButton->Size = System::Drawing::Size(254, 51);
 			this->AddButton->TabIndex = 50;
 			this->AddButton->Text = L"Add";
 			this->AddButton->UseVisualStyleBackColor = true;
-			this->AddButton->Click += gcnew System::EventHandler(this, &AddTimeSlot::AddButton_Click);
+			this->AddButton->Click += gcnew System::EventHandler(this, &ManageTimeSlots::AddButton_Click);
 			// 
 			// ClearButton
 			// 
 			this->ClearButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
 			this->ClearButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->ClearButton->Location = System::Drawing::Point(339, 609);
+			this->ClearButton->Location = System::Drawing::Point(674, 690);
 			this->ClearButton->Name = L"ClearButton";
 			this->ClearButton->Size = System::Drawing::Size(254, 51);
 			this->ClearButton->TabIndex = 52;
 			this->ClearButton->Text = L"Clear";
 			this->ClearButton->UseVisualStyleBackColor = true;
-			this->ClearButton->Click += gcnew System::EventHandler(this, &AddTimeSlot::ClearButton_Click);
+			this->ClearButton->Click += gcnew System::EventHandler(this, &ManageTimeSlots::ClearButton_Click);
 			// 
 			// CloseButton
 			// 
 			this->CloseButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
 			this->CloseButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->CloseButton->Location = System::Drawing::Point(642, 609);
+			this->CloseButton->Location = System::Drawing::Point(997, 690);
 			this->CloseButton->Name = L"CloseButton";
 			this->CloseButton->Size = System::Drawing::Size(254, 51);
 			this->CloseButton->TabIndex = 81;
 			this->CloseButton->Text = L"Close";
 			this->CloseButton->UseVisualStyleBackColor = true;
-			this->CloseButton->Click += gcnew System::EventHandler(this, &AddTimeSlot::CloseButton_Click);
+			this->CloseButton->Click += gcnew System::EventHandler(this, &ManageTimeSlots::CloseButton_Click);
 			// 
-			// AddTimeSlot
+			// RemoveButton
+			// 
+			this->RemoveButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->RemoveButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->RemoveButton->Location = System::Drawing::Point(28, 690);
+			this->RemoveButton->Name = L"RemoveButton";
+			this->RemoveButton->Size = System::Drawing::Size(254, 51);
+			this->RemoveButton->TabIndex = 82;
+			this->RemoveButton->Text = L"Remove";
+			this->RemoveButton->UseVisualStyleBackColor = true;
+			this->RemoveButton->Click += gcnew System::EventHandler(this, &ManageTimeSlots::RemoveButton_Click);
+			// 
+			// SectionIDTextBox
+			// 
+			this->SectionIDTextBox->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->SectionIDTextBox->Location = System::Drawing::Point(833, 33);
+			this->SectionIDTextBox->Name = L"SectionIDTextBox";
+			this->SectionIDTextBox->Size = System::Drawing::Size(106, 35);
+			this->SectionIDTextBox->TabIndex = 84;
+			// 
+			// SectionIDLabel
+			// 
+			this->SectionIDLabel->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
+			this->SectionIDLabel->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->SectionIDLabel->Location = System::Drawing::Point(211, 35);
+			this->SectionIDLabel->Name = L"SectionIDLabel";
+			this->SectionIDLabel->Size = System::Drawing::Size(616, 28);
+			this->SectionIDLabel->TabIndex = 85;
+			this->SectionIDLabel->Text = L"Enter Section For Which You Want To Modify TimeSlots :";
+			this->SectionIDLabel->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			// 
+			// ShowTimeSlotsButton
+			// 
+			this->ShowTimeSlotsButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->ShowTimeSlotsButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->ShowTimeSlotsButton->Location = System::Drawing::Point(972, 33);
+			this->ShowTimeSlotsButton->Name = L"ShowTimeSlotsButton";
+			this->ShowTimeSlotsButton->Size = System::Drawing::Size(225, 35);
+			this->ShowTimeSlotsButton->TabIndex = 86;
+			this->ShowTimeSlotsButton->Text = L"Show TimeSlots";
+			this->ShowTimeSlotsButton->UseVisualStyleBackColor = true;
+			this->ShowTimeSlotsButton->Click += gcnew System::EventHandler(this, &ManageTimeSlots::ShowTimeSlotsButton_Click);
+			// 
+			// dataGridView
+			// 
+			this->dataGridView->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView->Location = System::Drawing::Point(28, 135);
+			this->dataGridView->Name = L"dataGridView";
+			this->dataGridView->RowHeadersWidth = 62;
+			this->dataGridView->RowTemplate->Height = 28;
+			this->dataGridView->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
+			this->dataGridView->Size = System::Drawing::Size(1169, 294);
+			this->dataGridView->TabIndex = 87;
+			// 
+			// EditButton
+			// 
+			this->EditButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->EditButton->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->EditButton->Location = System::Drawing::Point(519, 435);
+			this->EditButton->Name = L"EditButton";
+			this->EditButton->Size = System::Drawing::Size(254, 39);
+			this->EditButton->TabIndex = 88;
+			this->EditButton->Text = L"Edit";
+			this->EditButton->UseVisualStyleBackColor = true;
+			this->EditButton->Click += gcnew System::EventHandler(this, &ManageTimeSlots::EditButton_Click);
+			// 
+			// ManageTimeSlots
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
-			this->ClientSize = System::Drawing::Size(947, 684);
+			this->ClientSize = System::Drawing::Size(1362, 792);
+			this->Controls->Add(this->EditButton);
+			this->Controls->Add(this->dataGridView);
+			this->Controls->Add(this->ShowTimeSlotsButton);
+			this->Controls->Add(this->SectionIDLabel);
+			this->Controls->Add(this->SectionIDTextBox);
+			this->Controls->Add(this->RemoveButton);
 			this->Controls->Add(this->CloseButton);
 			this->Controls->Add(this->TeacherIDLabel);
 			this->Controls->Add(this->TeacherIDTextBox);
 			this->Controls->Add(this->RoomIDTextBox);
 			this->Controls->Add(this->CourseNameTextBox);
-			this->Controls->Add(this->SectionTextBox);
 			this->Controls->Add(this->TeacherNameTextBox);
-			this->Controls->Add(this->SectionLabel);
 			this->Controls->Add(this->TeacherNameLabel);
 			this->Controls->Add(this->CourseNameLabel);
 			this->Controls->Add(this->RoomLabel);
@@ -354,9 +457,12 @@ namespace OOPASSIGNMENT2 {
 			this->Controls->Add(this->ClearButton);
 			this->Controls->Add(this->DayTextBox);
 			this->Controls->Add(this->DayLabel);
-			this->Name = L"AddTimeSlot";
-			this->Text = L"AddTimeSlot";
+			this->MinimumSize = System::Drawing::Size(1384, 848);
+			this->Name = L"ManageTimeSlots";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
+			this->Text = L"ManageTimeSlot";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -434,13 +540,50 @@ namespace OOPASSIGNMENT2 {
 		void ClearTextBoxes()
 		{
 			DayTextBox->Clear();
-			SectionTextBox->Clear();
+			SectionIDTextBox->Clear();
 			StartTimeTextBox->Clear();
 			EndTimeTextBox->Clear();
 			TeacherNameTextBox->Clear();
 			TeacherIDTextBox->Clear();
 			CourseNameTextBox->Clear();
 			RoomIDTextBox->Clear();
+		}
+
+		void LoadTimeSlots(String^ SectionID)
+		{
+
+			try
+			{
+
+				SqlConnection^ con = gcnew SqlConnection("Data Source=DESKTOP-MN4CFP4;Initial Catalog=TIMETABLEDB;Integrated Security=True");
+				con->Open();
+
+				SqlCommand^ cmd = gcnew SqlCommand("SELECT DayOfWeek, StartTime, EndTime, TeacherName,TeacherID, CourseName, RoomID FROM Timetables WHERE SectionID = @SectionID", con);
+				cmd->Parameters->AddWithValue("@SectionID", SectionID);
+
+				SqlDataReader^ reader = cmd->ExecuteReader();
+
+				dataGridView->Rows->Clear();
+
+				while (reader->Read())
+				{
+					String^ day = reader["DayOfWeek"]->ToString();
+					String^ startTime = reader["StartTime"]->ToString();
+					String^ endTime = reader["EndTime"]->ToString();
+					String^ teacherName = reader["TeacherName"]->ToString();
+					String^ applicationID = reader["TeacherID"]->ToString();
+					String^ courseName = reader["CourseName"]->ToString();
+					String^ roomID = reader["RoomID"]->ToString();
+
+					dataGridView->Rows->Add(day, startTime, endTime, courseName, teacherName, applicationID, roomID);
+				}
+				reader->Close();
+				con->Close();
+			}
+			catch (Exception^ ex)
+			{
+				MessageBox::Show("Error: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
 		}
 		bool CheckForClashes(String^ day, String^ startTime, String^ endTime, String^ section, String^ courseName, String^ teacherName, String^ roomId, String^ AppID)
 		{
@@ -513,18 +656,20 @@ namespace OOPASSIGNMENT2 {
 		String^ day = DayTextBox->Text;
 		String^ startTime = StartTimeTextBox->Text;
 		String^ endTime = EndTimeTextBox->Text;
-		String^ section = SectionTextBox->Text;
+		String^ section = SectionIDTextBox->Text;
 		String^ courseName = CourseNameTextBox->Text;
 		String^ teacherName = TeacherNameTextBox->Text;
 		String^ ApplicationID = TeacherIDTextBox->Text;
 		String^ roomId = RoomIDTextBox->Text;
-		
+
 		if (!CheckForClashes(day, startTime, endTime, section, courseName, teacherName, roomId, ApplicationID))
 		{
 			if (AddTimeSlotToDatabase(day, startTime, endTime, section, courseName, teacherName, roomId, ApplicationID))
 			{
 				MessageBox::Show("Time Slot Added Successfully!", "Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
 				ClearTextBoxes();
+				LoadTimeSlots(section);
+
 			}
 			else
 			{
@@ -544,5 +689,156 @@ namespace OOPASSIGNMENT2 {
 	{
 		this->Hide();
 	}
-};
+
+		   bool CheckSectionExistsInDatabase(String^ sectionID)
+		   {
+			   bool sectionExists = false;
+			   String^ connectionString = "Data Source=DESKTOP-MN4CFP4;Initial Catalog=TIMETABLEDB;Integrated Security=True";
+			   SqlConnection^ con = gcnew SqlConnection(connectionString);
+
+			   try {
+				   con->Open();
+				   String^ query = "SELECT COUNT(*) FROM Sections WHERE SectionID = @SectionID";
+				   SqlCommand^ cmd = gcnew SqlCommand(query, con);
+				   cmd->Parameters->AddWithValue("@SectionID", sectionID);
+				   int count = (int)cmd->ExecuteScalar();
+				   sectionExists = (count > 0);
+				   con->Close();
+			   }
+			   catch (Exception^ ex)
+			   {
+				   MessageBox::Show("An error occurred: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				   if (con->State == ConnectionState::Open) {
+					   con->Close();
+				   }
+			   }
+			   return sectionExists;
+		   }
+	private: System::Void ShowTimeSlotsButton_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		String^ section = SectionIDTextBox->Text;
+		if (CheckSectionExistsInDatabase(sectionID))
+		{
+			LoadTimeSlots(section);
+		}
+		else
+		{
+			MessageBox::Show("Section Not Found.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+	}
+
+		   bool RemoveTimeSlot(String^ day, String^ startTime, String^ endTime, String^ courseName, String^ teacherName, String^ teacherID, String^ roomID)
+		   {
+			   try
+			   {
+				   String^ query = "DELETE FROM TimeTables WHERE DayOfWeek = @Day AND StartTime = @StartTime AND EndTime = @EndTime AND CourseName = @CourseName AND TeacherName = @TeacherName AND TeacherID = @TeacherID AND RoomID = @RoomID";
+
+				   SqlConnection^ connection = gcnew SqlConnection("Data Source = DESKTOP-MN4CFP4; Initial Catalog = TIMETABLEDB; Integrated Security = True");
+				   SqlCommand^ command = gcnew SqlCommand(query, connection);
+				   command->Parameters->AddWithValue("@Day", day);
+				   command->Parameters->AddWithValue("@StartTime", startTime);
+				   command->Parameters->AddWithValue("@EndTime", endTime);
+				   command->Parameters->AddWithValue("@CourseName", courseName);
+				   command->Parameters->AddWithValue("@TeacherName", teacherName);
+				   command->Parameters->AddWithValue("@TeacherID", teacherID);
+				   command->Parameters->AddWithValue("@RoomID", roomID);
+
+				   connection->Open();
+				   int rowsAffected = command->ExecuteNonQuery();
+
+				   connection->Close();
+
+				   if (rowsAffected > 0)
+				   {
+					   return true;
+				   }
+				   else
+				   {
+					   return false;
+				   }
+			   }
+			   catch (Exception^ ex)
+			   {
+				   MessageBox::Show("Error: " + ex->Message, "Database Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				   return false;
+			   }
+		   }
+
+
+	private: System::Void EditButton_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		if (dataGridView->SelectedRows->Count > 0)
+		{
+			DataGridViewRow^ row = dataGridView->SelectedRows[0];
+
+			String^ day = row->Cells["Day"]->Value->ToString();
+			DateTime startTime = Convert::ToDateTime(row->Cells["StartTime"]->Value);
+			DateTime endTime = Convert::ToDateTime(row->Cells["EndTime"]->Value);
+			String^ courseName = row->Cells["CourseName"]->Value->ToString();
+			String^ teacherName = row->Cells["TeacherName"]->Value->ToString();
+			String^ teacherID = row->Cells["TeacherID"]->Value->ToString();
+			String^ roomID = row->Cells["Room"]->Value->ToString();
+
+			String^ startTimeString = startTime.ToString("HH:mm:ss");
+			String^ endTimeString = endTime.ToString("HH:mm:ss");
+
+			if (RemoveTimeSlot(day, startTimeString, endTimeString, courseName, teacherName, teacherID, roomID))
+			{
+				String^ newDay = DayTextBox->Text;
+				String^ newStartTime = StartTimeTextBox->Text;
+				String^ newEndTime = EndTimeTextBox->Text;
+				String^ newCourseName = CourseNameTextBox->Text;
+				String^ newTeacherName = TeacherNameTextBox->Text;
+				String^ newTeacherID = TeacherIDTextBox->Text;
+				String^ newRoomID = RoomIDTextBox->Text;
+				String^ section = SectionIDTextBox->Text;
+
+				if (AddTimeSlotToDatabase(newDay, newStartTime, newEndTime, section, newCourseName, newTeacherName, newRoomID, newTeacherID))
+				{
+					ClearTextBoxes();
+					MessageBox::Show("Time slot edited successfully!", "Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
+					LoadTimeSlots(section);
+				}
+				else
+				{
+					MessageBox::Show("Failed to add new time slot.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				}
+			}
+			else
+			{
+				MessageBox::Show("Failed to remove existing time slot.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
+		}
+	}
+
+	private: System::Void RemoveButton_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		if (dataGridView->SelectedRows->Count > 0)
+		{
+			DataGridViewRow^ row = dataGridView->SelectedRows[0];
+
+			String^ day = row->Cells["Day"]->Value->ToString();
+			DateTime startTime = Convert::ToDateTime(row->Cells["StartTime"]->Value);
+			DateTime endTime = Convert::ToDateTime(row->Cells["EndTime"]->Value);
+			String^ courseName = row->Cells["CourseName"]->Value->ToString();
+			String^ teacherName = row->Cells["TeacherName"]->Value->ToString();
+			String^ teacherID = row->Cells["TeacherID"]->Value->ToString();
+			String^ roomID = row->Cells["Room"]->Value->ToString();
+
+			String^ startTimeString = startTime.ToString("HH:mm:ss");
+			String^ endTimeString = endTime.ToString("HH:mm:ss");
+
+			if (RemoveTimeSlot(day, startTimeString, endTimeString, courseName, teacherName, teacherID, roomID))
+			{
+				String^ section = SectionIDTextBox->Text;
+				LoadTimeSlots(section);
+				MessageBox::Show("Time slot removed successfully!", "Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			}
+			else
+			{
+				MessageBox::Show("Failed to remove time slot.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
+		}
+	}
+	};
 }

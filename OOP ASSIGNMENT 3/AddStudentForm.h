@@ -106,7 +106,7 @@ namespace OOPASSIGNMENT2
 			this->CloseButton->Location = System::Drawing::Point(448, 579);
 			this->CloseButton->Name = L"CloseButton";
 			this->CloseButton->Size = System::Drawing::Size(186, 51);
-			this->CloseButton->TabIndex = 45;
+			this->CloseButton->TabIndex = 6;
 			this->CloseButton->Text = L"Close";
 			this->CloseButton->UseVisualStyleBackColor = true;
 			this->CloseButton->Click += gcnew System::EventHandler(this, &AddStudentForm::CloseButton_Click);
@@ -119,7 +119,7 @@ namespace OOPASSIGNMENT2
 			this->AddButton->Location = System::Drawing::Point(12, 579);
 			this->AddButton->Name = L"AddButton";
 			this->AddButton->Size = System::Drawing::Size(182, 51);
-			this->AddButton->TabIndex = 41;
+			this->AddButton->TabIndex = 4;
 			this->AddButton->Text = L"Add";
 			this->AddButton->UseVisualStyleBackColor = true;
 			this->AddButton->Click += gcnew System::EventHandler(this, &AddStudentForm::AddButton_Click);
@@ -132,7 +132,7 @@ namespace OOPASSIGNMENT2
 			this->ClearButton->Location = System::Drawing::Point(215, 579);
 			this->ClearButton->Name = L"ClearButton";
 			this->ClearButton->Size = System::Drawing::Size(199, 51);
-			this->ClearButton->TabIndex = 43;
+			this->ClearButton->TabIndex = 5;
 			this->ClearButton->Text = L"Clear";
 			this->ClearButton->UseVisualStyleBackColor = true;
 			this->ClearButton->Click += gcnew System::EventHandler(this, &AddStudentForm::ClearButton_Click);
@@ -144,7 +144,7 @@ namespace OOPASSIGNMENT2
 			this->NameTextBox->Location = System::Drawing::Point(2, 328);
 			this->NameTextBox->Name = L"NameTextBox";
 			this->NameTextBox->Size = System::Drawing::Size(643, 35);
-			this->NameTextBox->TabIndex = 44;
+			this->NameTextBox->TabIndex = 1;
 			// 
 			// NameLabel
 			// 
@@ -175,7 +175,7 @@ namespace OOPASSIGNMENT2
 			this->IDTextBox->Location = System::Drawing::Point(2, 418);
 			this->IDTextBox->Name = L"IDTextBox";
 			this->IDTextBox->Size = System::Drawing::Size(643, 35);
-			this->IDTextBox->TabIndex = 49;
+			this->IDTextBox->TabIndex = 2;
 			// 
 			// label3
 			// 
@@ -195,7 +195,7 @@ namespace OOPASSIGNMENT2
 			this->SectionTextBox->Location = System::Drawing::Point(2, 509);
 			this->SectionTextBox->Name = L"SectionTextBox";
 			this->SectionTextBox->Size = System::Drawing::Size(643, 35);
-			this->SectionTextBox->TabIndex = 51;
+			this->SectionTextBox->TabIndex = 3;
 			// 
 			// AddStudentForm
 			// 

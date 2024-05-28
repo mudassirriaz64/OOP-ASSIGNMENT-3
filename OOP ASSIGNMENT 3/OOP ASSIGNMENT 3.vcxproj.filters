@@ -60,13 +60,16 @@
     <ClInclude Include="DisplayTeachers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AddTimeSlot.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RemoveTimeSlot.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SearchTimeSlot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AdminLogin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AdminDashBoard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ManageTimeSlots.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -116,13 +119,16 @@
     <ClCompile Include="DisplayTeachers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AddTimeSlot.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RemoveTimeSlot.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SearchTimeSlot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AdminLogin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AdminDashBoard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ManageTimeSlots.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
